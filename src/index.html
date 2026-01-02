@@ -3,25 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniket Shinde. — Shopify Expert & Developer</title>
+    <title>Aniket Shinde | Expert Shopify Developer & Store Architect</title>
+    <meta name="description" content="Professional Shopify developer specializing in custom theme development, store optimization, and conversion-focused design. Transform your e-commerce vision into a high-performance reality.">
+    <meta name="keywords" content="Shopify Developer, Shopify Expert, Store Design, E-commerce Optimization, Custom Shopify Themes, Liquid Developer, Shopify Migration">
+    <link rel="canonical" href="https://aniketshinde.work/">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    
 
-    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aniketshinde.work/">
+    <meta property="og:title" content="Aniket Shinde | Expert Shopify Developer & Store Architect">
+    <meta property="og:description" content="Professional Shopify developer specializing in custom theme development and store optimization.">
+    <meta property="og:image" content="https://aniketshinde.work/assets/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aniketshinde.work/">
+    <meta property="twitter:title" content="Aniket Shinde | Expert Shopify Developer & Store Architect">
+    <meta property="twitter:description" content="Professional Shopify developer specializing in custom theme development and store optimization.">
+    <meta property="twitter:image" content="https://aniketshinde.work/assets/images/og-image.png">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
     
-    <!-- Fonts -->
+    <!-- Fonts & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Schema.org Script -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Aniket Shinde",
+      "image": "https://aniketshinde.work/assets/images/aniket..png",
+      "@id": "https://aniketshinde.work/",
+      "url": "https://aniketshinde.work/",
+      "telephone": "+91 8094998810",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "",
+        "addressLocality": "India",
+        "postalCode": "",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 20.5937,
+        "longitude": 78.9629
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/",
+        "https://www.linkedin.com/"
+      ]
+    }
+    </script>
 
     <style>
-        body { font-family: 'Manrope', sans-serif; }
+        :root {
+            --lime: #C6F546;
+            --dark: #0A0A0A;
+            --light: #FFFFFF;
+        }
+
+        body { 
+            font-family: 'Manrope', sans-serif; 
+            scroll-behavior: smooth;
+        }
         .font-manrope { font-family: 'Manrope', sans-serif; }
+
+        /* PREMIUM SCROLLBAR */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark); }
+        ::-webkit-scrollbar-thumb { 
+            background: #222; 
+            border-radius: 10px;
+            border: 2px solid var(--dark);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--lime); }
 
         /* LENIS SMOOTH SCROLL */
         html.lenis { height: auto; }
@@ -54,9 +128,36 @@
             backface-visibility: hidden;
             -webkit-font-smoothing: subpixel-antialiased;
         }
+
+        /* PREMIUM GLASSMORPHISM */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* CUSTOM CURSOR */
+        @media (min-width: 1024px) {
+            .custom-cursor {
+                width: 20px;
+                height: 20px;
+                background: var(--lime);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                mix-blend-mode: difference;
+                transition: transform 0.1s ease;
+            }
+        }
     </style>
+
 </head>
 <body class="bg-light text-dark font-manrope selection:bg-lime selection:text-dark overflow-x-hidden">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor hidden lg:block"></div>
+
 
     <!-- Sticky Navigation -->
     <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-100">
@@ -827,13 +928,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <!-- Configuration (Strong Architecture) -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
     <!-- Premium Floating WhatsApp Widget -->
     <a href="https://wa.me/918094998810?text=Hi%20Aniket%2C%20I%27d%20love%20to%20discuss%20a%20Shopify%20project%20with%20you%21" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center group">
         <!-- Interactive Label -->
@@ -853,5 +947,14 @@
             </div>
         </div>
     </a>
+
+    <!-- Scripts -->
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

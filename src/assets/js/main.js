@@ -44,28 +44,47 @@ if (mobileMenuBtn && mobileMenu) {
     });
 }
 
-// LENIS SMOOTH SCROLL SETUP (Premium Inertia) WITH FALLBACK
+// LENIS SMOOTH SCROLL SETUP (Buttery Smooth Refined)
 let lenis;
 if (typeof Lenis !== 'undefined') {
     lenis = new Lenis({
-        duration: 1.2,
+        lerp: 0.08, // Lower for more "buttery" feel
+        duration: 1.5, // Slightly longer for premium weight
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.1,
         smoothTouch: false,
         touchMultiplier: 2,
+        infinite: false,
     });
 
+    // Request Animation Frame for Lenis
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+
+    // Efficient Image Hardware Acceleration Trigger
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.willChange = 'transform';
+                entry.target.style.transform = 'translateZ(0)';
+            } else {
+                entry.target.style.willChange = 'auto';
+            }
+        });
+    }, { rootMargin: '200px' });
+
+    document.querySelectorAll('img').forEach(img => imageObserver.observe(img));
 } else {
     console.warn('Lenis script not loaded. Falling back to native scroll.');
 }
+
+
 
 // TEXT REVEAL ANIMATION (Synchronized Heading/Subtext)
 const textRevealObserver = new IntersectionObserver((entries) => {
@@ -204,4 +223,25 @@ if (messageInput && charCount) {
     });
 }
 
-// console.log("Portfolio Loaded. Let's get that bread. 🍞");
+// Custom Cursor Logic (Premium Interaction)
+const cursor = document.querySelector('.custom-cursor');
+if (cursor) {
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
+    });
+
+    document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform += ' scale(2.5)';
+            cursor.style.backgroundColor = 'rgba(198, 245, 70, 0.3)';
+            cursor.style.borderColor = 'var(--lime)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = cursor.style.transform.replace(' scale(2.5)', '');
+            cursor.style.backgroundColor = '';
+            cursor.style.borderColor = '';
+        });
+    });
+}
+
+console.log("Portfolio Optimized & Ready. ✨");

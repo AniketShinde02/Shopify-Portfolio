@@ -3,13 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You — Aniket Shinde</title>
+    <title>Thank You | Aniket Shinde - Shopify Expert</title>
+    <meta name="description" content="Thank you for your inquiry. I'll get back to you shortly to discuss your Shopify project.">
+    <meta name="robots" content="noindex">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/main.css">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Fonts & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <style>
+        :root {
+            --lime: #C6F546;
+            --dark: #0A0A0A;
+            --light: #FFFFFF;
+        }
+
+        body { 
+            font-family: 'Manrope', sans-serif; 
+        }
+
+        /* CUSTOM CURSOR */
+        @media (min-width: 1024px) {
+            .custom-cursor {
+                width: 20px;
+                height: 20px;
+                background: var(--lime);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                mix-blend-mode: difference;
+                transition: transform 0.1s ease;
+            }
+        }
+    </style>
+
 </head>
 <body class="bg-black text-white font-manrope min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Custom Cursor -->
+    <div class="custom-cursor hidden lg:block"></div>
+
     
     <!-- Background Decoration -->
     <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
@@ -47,8 +86,12 @@
         </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="assets/js/main.js"></script>
     <script>
         lucide.createIcons();
     </script>
 </body>
 </html>
+

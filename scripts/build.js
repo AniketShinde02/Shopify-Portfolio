@@ -31,14 +31,15 @@ function copyRecursiveSync(src, dest) {
 
 console.log('🚀 Starting Build Process...');
 
-// 1. Copy HTML Files
+// 1. Copy Main Files (HTML, robots, sitemap)
 const files = fs.readdirSync(srcDir);
 files.forEach(file => {
-    if (file.endsWith('.html')) {
+    if (file.endsWith('.html') || file === 'robots.txt' || file === 'sitemap.xml') {
         fs.copyFileSync(path.join(srcDir, file), path.join(distDir, file));
         console.log(`📄 Copied ${file}`);
     }
 });
+
 
 // 2. Copy Assets (Images, Fonts, JS)
 const assetsSrc = path.join(srcDir, 'assets');
