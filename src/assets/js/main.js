@@ -48,17 +48,18 @@ if (mobileMenuBtn && mobileMenu) {
 let lenis;
 if (typeof Lenis !== 'undefined') {
     lenis = new Lenis({
-        lerp: 0.08, // Lower for more "buttery" feel
-        duration: 1.5, // Slightly longer for premium weight
+        lerp: 0.1, // Faster response for better feel on lower-end hardware
+        duration: 1.2, // Standard premium duration
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.1,
-        smoothTouch: false,
-        touchMultiplier: 2,
+        wheelMultiplier: 1,
+        smoothTouch: true, // Enable for mobile consistency
+        touchMultiplier: 1.5,
         infinite: false,
     });
+
 
     // Request Animation Frame for Lenis
     function raf(time) {
