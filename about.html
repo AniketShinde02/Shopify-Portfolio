@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About & Contact — Aniket Shinde</title>
+    
+
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { font-family: 'Manrope', sans-serif; }
+        
+        /* LENIS SMOOTH SCROLL */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        /* IMAGE PERFORMANCE */
+        img {
+            backface-visibility: hidden;
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
+    </style>
+</head>
+<body class="bg-[#F8F8F8] text-dark font-manrope selection:bg-lime selection:text-dark overflow-x-hidden">
+
+    <!-- Sticky Navigation -->
+    <!-- Sticky Navigation -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-black/5">
+        <a href="index.html" class="text-xl font-bold tracking-tight text-black">Aniket<span class="text-lime">.</span></a>
+        
+        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-500">
+            <a href="index.html#work" class="hover:text-black transition-colors">Work</a>
+            <a href="pricing.html" class="hover:text-black transition-colors">Pricing</a>
+            <a href="about.html" class="text-black font-bold">About & Contact</a>
+        </div>
+        
+        <a href="#contact" class="hidden md:block bg-black text-white px-5 py-2 rounded-full text-xs font-bold hover:bg-lime hover:text-black transition-all">Let's Talk</a>
+        
+        <button id="mobile-menu-btn" class="md:hidden text-black"><i data-lucide="menu"></i></button>
+    </nav>
+
+    <!-- Mobile Menu Modal (Full Width Top Sheet) -->
+    <!-- Outer Overlay (Backdrop) -->
+    <div id="mobile-menu" class="group fixed inset-0 z-[60] hidden flex-col justify-start bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        
+        <!-- The Card (Full Width Slide Down) -->
+        <div class="menu-content w-full bg-white rounded-b-[40px] px-6 py-6 shadow-2xl relative flex flex-col gap-8 transform transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-[.opacity-0]:-translate-y-full">
+            
+            <!-- Header (Logo + Close Button aligned with Navbar) -->
+            <div class="w-full flex justify-between items-center">
+                 <span class="text-2xl font-bold tracking-tight text-black">Aniket<span class="text-lime">.</span></span>
+                 <button id="close-menu-btn" class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 text-black hover:bg-lime transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Links (Centered & Bold) -->
+             <div class="flex flex-col items-center gap-6 w-full pt-4">
+                <a href="index.html#work" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Work</a>
+                <a href="pricing.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Pricing</a>
+                <a href="about.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">About & Contact</a>
+            </div>
+
+            <!-- Footer (Email + CTA) -->
+            <div class="w-full text-center pb-6 flex flex-col items-center gap-6">
+                 <div>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-2">Email</p>
+                    <a href="mailto:aniketshinde.work@outlook.com" class="text-base font-medium text-gray-600 border-b border-gray-200">aniketshinde.work@outlook.com</a>
+                 </div>
+                 
+                 <a href="https://cal.com/aniket.work" target="_blank" class="flex items-center justify-center bg-[#111] text-white w-full py-5 rounded-full text-xl font-bold hover:bg-lime hover:text-black transition-all shadow-lg text-center mobile-link">
+                    Book a Call
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ABOUT SECTION -->
+    <main class="pt-32 md:pt-40 pb-24 px-6 lg:px-12 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+            
+            <!-- Left: Info -->
+            <div class="lg:col-span-5">
+                <span class="text-gray-500 font-bold uppercase tracking-widest text-xs mb-4 block">Available for work</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-12 text-black">About me</h1>
+                
+                <div class="flex items-center gap-6 mb-8">
+                    <img src="assets/images/aniket..png" alt="Aniket" class="w-16 h-16 rounded-full object-cover shadow-md">
+                    <div>
+                        <div class="flex gap-3 mb-1">
+                             <a href="#" class="text-gray-400 hover:text-black transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                             <a href="#" class="text-gray-400 hover:text-black transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                        </div>
+                        <a href="mailto:Aniketshinde.work@outlook.com" class="text-lg md:text-xl font-bold hover:text-lime transition-colors block leading-tight break-words">
+                            Aniketshinde.work<br><span class="text-gray-400 text-base">@outlook.com</span>
+                        </a>
+                    </div>
+                </div>
+
+                <p class="text-xl text-gray-500 leading-relaxed mb-10">
+                    Hi, I'm Aniket Shinde, a Shopify Developer specializing in crafting premium theme-based websites and developing robust Shopify stores that aren't just visually stunning—they're engineered to convert and scale.
+                </p>
+
+
+
+                <div class="flex flex-col gap-3">
+                    <a href="https://cal.com/aniket.work" target="_blank" class="bg-lime text-black px-8 py-3 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-black hover:text-white transition-all w-fit shadow-lg shadow-lime/20">
+                        Book a free call <i data-lucide="video" class="w-4 h-4"></i>
+                    </a>
+                    <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest pl-1">Via Google Meet</p>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="lg:col-span-7 bg-white p-8 md:p-12 rounded-[32px] shadow-2xl shadow-black/5 border border-black/5 relative overflow-hidden">
+                <div id="contact-form-container">
+                    <h2 class="text-3xl font-bold mb-8">Let's get in touch</h2>
+                    <!-- Google Form integration -->
+                    <form id="portfolio-contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Name</label>
+                                <input type="text" name="name" placeholder="Your Name" required class="w-full bg-[#F3F3F3] border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-lime outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Email</label>
+                                <input type="email" name="email" placeholder="Your Email" required class="w-full bg-[#F3F3F3] border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-lime outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Service Needed</label>
+                            <select name="service" required class="w-full bg-[#F3F3F3] border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-lime outline-none appearance-none cursor-pointer text-gray-500">
+                                <option value="" disabled selected>Select Service</option>
+                                <option value="New Shopify Store">New Shopify Store</option>
+                                <option value="Store Redesign/Revamp">Store Redesign/Revamp</option>
+                                <option value="Custom Features/Sections">Custom Features/Sections</option>
+                                <option value="Conversion Strategy">Conversion Strategy</option>
+                            </select>
+                        </div>
+
+                        <div class="relative">
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="block text-xs font-bold uppercase tracking-widest text-gray-400">Message</label>
+                                <span id="char-count" class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">0 / 1000</span>
+                            </div>
+                            <textarea id="message-input" rows="4" name="message" maxlength="1000" placeholder="Tell me more about your project" required 
+                                class="w-full bg-[#F3F3F3] border-none rounded-2xl px-6 py-4 focus:ring-2 focus:ring-lime outline-none resize-y" 
+                                style="min-height: 120px; max-height: 300px;"></textarea>
+                        </div>
+                        <button type="submit" id="submit-btn" class="w-full bg-dark text-white font-bold py-4 rounded-2xl hover:bg-lime hover:text-black transition-all flex items-center justify-center gap-3">
+                            <span>Send Message</span>
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Minimal Success UI -->
+                <div id="success-msg" class="hidden absolute inset-0 bg-white flex flex-col items-center justify-center text-center p-8 z-20">
+                    <div class="w-16 h-16 bg-lime/10 rounded-full flex items-center justify-center mb-4 text-lime">
+                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-dark mb-2">Request Received!</h3>
+                    <p class="text-gray-500 text-sm">Thanks, Aniket will get back to you soon.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FAQ SECTION -->
+    <section class="py-24 bg-[#F3F3F3]">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-24 reveal-up">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="w-2.5 h-2.5 bg-lime rounded-full"></span>
+                    <span class="text-gray-400 font-bold uppercase tracking-widest text-[10px]">FAQ</span>
+                </div>
+                <h2 class="text-5xl md:text-7xl font-medium tracking-tight text-[#2F2F2F]">
+                    Got Questions?
+                </h2>
+            </div>
+
+            <div class="flex flex-col gap-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item group bg-white border border-black/5 rounded-2xl px-6 py-5 md:px-10 md:py-8 cursor-pointer reveal-up">
+                    <div class="flex items-start justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-4 faq-question">
+                                <span class="text-gray-300 font-bold text-sm md:text-base">01/</span>
+                                <h3 class="font-bold text-lg md:text-xl text-[#2F2F2F]">What is your typical project timeline?</h3>
+                            </div>
+                            <div class="faq-content-wrapper">
+                                <div class="faq-inner-content">
+                                    <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl mt-4 pl-0 md:pl-10">
+                                        Typical store setup takes 10-14 days. Complex migrations or custom code tweaks can take 2-4 weeks depending on the scope. I'll provide a specific roadmap after we discuss your needs.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plus-icon w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 group-hover:border-lime/30 transition-all shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item group bg-white border border-black/5 rounded-2xl px-6 py-5 md:px-10 md:py-8 cursor-pointer reveal-up">
+                    <div class="flex items-start justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-4 faq-question">
+                                <span class="text-gray-300 font-bold text-sm md:text-base">02/</span>
+                                <h3 class="font-bold text-lg md:text-xl text-[#2F2F2F]">Do you offer ongoing maintenance?</h3>
+                            </div>
+                            <div class="faq-content-wrapper">
+                                <div class="faq-inner-content">
+                                    <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl mt-4 pl-0 md:pl-10">
+                                        Yes, I offer monthly retainer packages for store owners who need regular speed audits, new section builds, or theme updates to keep the store performing at its peak.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plus-icon w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 group-hover:border-lime/30 transition-all shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item group bg-white border border-black/5 rounded-2xl px-6 py-5 md:px-10 md:py-8 cursor-pointer reveal-up">
+                    <div class="flex items-start justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-4 faq-question">
+                                <span class="text-gray-300 font-bold text-sm md:text-base">03/</span>
+                                <h3 class="font-bold text-lg md:text-xl text-[#2F2F2F]">Can you work with existing brand guidelines?</h3>
+                            </div>
+                            <div class="faq-content-wrapper">
+                                <div class="faq-inner-content">
+                                    <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl mt-4 pl-0 md:pl-10">
+                                        Absolutely. I can translate your fonts, colors, and design language perfectly into a functional Shopify theme that feels uniquely yours.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plus-icon w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 group-hover:border-lime/30 transition-all shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item group bg-white border border-black/5 rounded-2xl px-6 py-5 md:px-10 md:py-8 cursor-pointer reveal-up">
+                    <div class="flex items-start justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-4 faq-question">
+                                <span class="text-gray-300 font-bold text-sm md:text-base">04/</span>
+                                <h3 class="font-bold text-lg md:text-xl text-[#2F2F2F]">How do you handle revisions?</h3>
+                            </div>
+                            <div class="faq-content-wrapper">
+                                <div class="faq-inner-content">
+                                    <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl mt-4 pl-0 md:pl-10">
+                                        Feedback is key. Each project includes 2 rounds of major revisions. I use tools like Loom to walk you through changes so we stay aligned on the vision.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plus-icon w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 group-hover:border-lime/30 transition-all shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item group bg-white border border-black/5 rounded-2xl px-6 py-5 md:px-10 md:py-8 cursor-pointer reveal-up">
+                    <div class="flex items-start justify-between gap-6">
+                        <div class="flex-grow">
+                            <div class="flex items-center gap-4 faq-question">
+                                <span class="text-gray-300 font-bold text-sm md:text-base">05/</span>
+                                <h3 class="font-bold text-lg md:text-xl text-[#2F2F2F]">How do I get started?</h3>
+                            </div>
+                            <div class="faq-content-wrapper">
+                                <div class="faq-inner-content">
+                                    <p class="text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl mt-4 pl-0 md:pl-10">
+                                        Simply fill out the contact form or send me an email. I'll get back to you within 24 hours to schedule a quick discovery call.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="plus-icon w-10 h-10 md:w-12 md:h-12 rounded-full border border-gray-100 flex items-center justify-center text-gray-400 group-hover:border-lime/30 transition-all shrink-0">
+                            <i data-lucide="plus" class="w-5 h-5 md:w-6 md:h-6"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS MARQUEE (Honest Technical Skills) -->
+    <div class="relative py-8 bg-[#111] border-y border-white/5 overflow-hidden">
+        <!-- Fade Gradients -->
+        <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#111] to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#111] to-transparent z-10 pointer-events-none"></div>
+
+        <div class="marquee-track flex whitespace-nowrap gap-16 items-center text-white font-bold uppercase tracking-widest text-xl" style="animation-duration: 50s;">
+             <div class="flex items-center gap-16">
+                 <span>Shopify Developer</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+                 <span class="text-lime">No-Code Sections</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+                 <span>Store Setup</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+                 <span class="text-lime">Speed Optimization</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+                 <span>Theme Customization</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+             </div>
+             <!-- Duplicate for loop -->
+             <div class="flex items-center gap-16">
+                 <span>Shopify Developer</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+                 <span class="text-lime">No-Code Sections</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+                 <span>Store Setup</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+                 <span class="text-lime">Speed Optimization</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+                 <span>Theme Customization</span>
+                 <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
+             </div>
+        </div>
+    </div>
+
+    <!-- UNIVERSAL FOOTER -->
+    <footer id="contact" class="bg-black text-white pt-32 pb-12 px-6 lg:px-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-end mb-32">
+                <!-- Left: Massive Text -->
+                <div>
+                     <button class="bg-[#111] border border-white/10 rounded-full px-4 py-1.5 mb-8 text-[10px] uppercase font-bold tracking-widest flex items-center gap-2">
+                        <div class="w-2 h-2 bg-lime rounded-full animate-pulse"></div> Available for work
+                     </button>
+                     <h2 class="text-5xl md:text-8xl font-bold leading-none tracking-tighter">
+                        Let's create something <br> <span class="text-gray-600">extraordinary</span> together.
+                     </h2>
+                </div>
+
+                <!-- Right: Profile Block -->
+                <div class="bg-[#111] p-10 rounded-[40px] border border-white/5 relative">
+                    <div class="flex items-center gap-6 mb-10">
+                        <img src="assets/images/aniket..png" alt="Aniket" class="w-16 h-16 rounded-full grayscale hover:grayscale-0 transition-all object-cover object-center">
+                        <div>
+                            <h4 class="text-xl font-bold">Aniket Shinde</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Shopify Developer</p>
+                            <div class="flex gap-4 mt-3">
+                                <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-1">Contact me</span>
+                        <a href="mailto:Aniketshinde.work@outlook.com" class="text-xl md:text-2xl font-bold hover:text-lime transition-colors block break-words">
+                            Aniketshinde.work<br><span class="text-gray-500 text-lg">@outlook.com</span>
+                        </a>
+                    </div>
+
+                    <p class="text-sm text-gray-400 leading-relaxed font-medium">
+                        Hit me up if you're looking for a <span class="text-white">fast, reliable Shopify dev</span> who can bring your vision to life.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-600">
+                <div class="flex items-center gap-2">
+                    <span class="text-white">Aniket Shinde</span> / 2026
+                </div>
+                <p>&copy; 2026 Aniket Shinde — Built for Shopify</p>
+                <a href="#" class="flex items-center gap-2 hover:text-white transition-colors">Back to top <i data-lucide="arrow-up" class="w-3 h-3"></i></a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Configuration -->
+    <!-- Configuration -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    <!-- Premium Floating WhatsApp Widget -->
+    <a href="https://wa.me/918094998810?text=Hi%20Aniket%2C%20I%27d%20love%20to%20discuss%20a%20Shopify%20project%20with%20you%21" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center group">
+        <!-- Interactive Label -->
+        <div class="bg-black text-white text-[11px] font-bold py-2.5 px-4 rounded-l-full opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300 border border-white/10 border-r-0 uppercase tracking-widest hidden md:block shadow-xl">
+            Chat with me
+        </div>
+        <!-- Main Icon Button -->
+        <div class="relative">
+            <!-- Pulsing Aura -->
+            <div class="absolute inset-0 bg-lime rounded-full animate-ping opacity-25"></div>
+            <!-- Icon -->
+            <div class="relative bg-lime text-black w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(198,245,70,0.4)] group-hover:scale-110 transition-transform duration-300">
+                <!-- WhatsApp SVG Path -->
+                <svg viewBox="0 0 24 24" class="w-7 h-7 md:w-8 md:h-8 fill-current" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+            </div>
+        </div>
+    </a>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You — Aniket Shinde</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-black text-white font-manrope min-h-screen flex items-center justify-center overflow-hidden">
+    
+    <!-- Background Decoration -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+        <div class="absolute -top-1/4 -right-1/4 w-[600px] h-[600px] bg-lime rounded-full blur-[150px] animate-pulse"></div>
+        <div class="absolute -bottom-1/4 -left-1/4 w-[600px] h-[600px] bg-gray-600 rounded-full blur-[150px]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-2xl px-6 text-center">
+        <!-- Success Icon -->
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-lime/10 border border-lime/20 mb-10">
+            <i data-lucide="check-circle-2" class="w-10 h-10 text-lime"></i>
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
+            Message <span class="text-lime">Received.</span>
+        </h1>
+        
+        <p class="text-xl text-gray-400 mb-12 leading-relaxed">
+            Thanks for reaching out, I've received your inquiry. I personally review every message to ensure a tailored strategy for your brand. 
+            <br><span class="text-white font-bold mt-4 block italic">Expect a response within 24 hours.</span>
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="index.html" class="bg-white text-black px-10 py-4 rounded-full font-bold hover:bg-lime transition-all flex items-center justify-center gap-2">
+                Back to Home <i data-lucide="home" class="w-4 h-4"></i>
+            </a>
+            <a href="index.html#work" class="border border-white/20 text-white px-10 py-4 rounded-full font-bold hover:bg-white/5 transition-all">
+                Explore Work
+            </a>
+        </div>
+
+        <!-- Social Proof/Quote -->
+        <div class="mt-20 pt-10 border-t border-white/10 opacity-60">
+            <p class="text-xs uppercase tracking-[0.2em] font-bold text-gray-500">Shopify Strategy & Conversion Specialist</p>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

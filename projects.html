@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects | Aniket S.</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Fonts (Manrope) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+
+
+    <style>
+        body { font-family: 'Manrope', sans-serif; }
+        
+        /* LENIS SMOOTH SCROLL */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+        .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+        /* MARQUEE OVERRIDE */
+        .marquee-track:hover { animation-play-state: running !important; }
+
+        /* IMAGE PERFORMANCE */
+        img {
+            backface-visibility: hidden;
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
+        
+        /* Smooth Scroll on Hover Logic */
+        .project-card:hover .scrolling-image {
+            transform: translateY(calc(-100% + 400px)); /* Scrolls to bottom */
+            transition: transform 3s ease-in-out; /* Adjust speed based on length */
+        }
+        .project-card .scrolling-image {
+            transition: transform 1s ease-out; /* Resets quickly */
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-manrope selection:bg-lime selection:text-dark">
+
+    <!-- Navigation (Consistent) -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 px-6 py-4 flex justify-between items-center bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <a href="index.html" class="text-xl font-bold tracking-tight">Aniket<span class="text-lime-600">.</span></a>
+        
+        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-600">
+            <a href="index.html#work" class="hover:text-black transition-colors">Work</a>
+            <a href="pricing.html" class="hover:text-black transition-colors">Pricing</a>
+            <a href="about.html" class="hover:text-black transition-colors">About & Contact</a>
+        </div>
+
+        <a href="index.html#contact" class="hidden md:block bg-dark text-white px-6 py-2 rounded-full text-sm font-bold hover:bg-lime hover:text-dark transition-all">Let's Talk</a>
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-dark"><i data-lucide="menu"></i></button>
+    </nav>
+
+    <!-- Mobile Menu Modal (Full Width Top Sheet) -->
+    <!-- Outer Overlay (Backdrop) -->
+    <div id="mobile-menu" class="group fixed inset-0 z-[60] hidden flex-col justify-start bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        
+        <!-- The Card (Full Width Slide Down) -->
+        <div class="menu-content w-full bg-white rounded-b-[40px] px-6 py-6 shadow-2xl relative flex flex-col gap-8 transform transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-[.opacity-0]:-translate-y-full">
+            
+            <!-- Header (Logo + Close Button aligned with Navbar) -->
+            <div class="w-full flex justify-between items-center">
+                 <span class="text-2xl font-bold tracking-tight text-black">Aniket<span class="text-lime">.</span></span>
+                 <button id="close-menu-btn" class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 text-black hover:bg-lime transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Links (Centered & Bold) -->
+             <div class="flex flex-col items-center gap-6 w-full pt-4">
+                <a href="index.html#work" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Work</a>
+                <a href="pricing.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Pricing</a>
+                <a href="about.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">About & Contact</a>
+            </div>
+
+            <!-- Footer (Email + CTA) -->
+            <div class="w-full text-center pb-6 flex flex-col items-center gap-6">
+                 <div>
+                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-2">Email</p>
+                    <a href="mailto:aniketshinde.work@outlook.com" class="text-base font-medium text-gray-600 border-b border-gray-200">aniketshinde.work@outlook.com</a>
+                 </div>
+                 
+                 <a href="https://cal.com/aniket.work" target="_blank" class="flex items-center justify-center bg-[#111] text-white w-full py-5 rounded-full text-xl font-bold hover:bg-lime hover:text-black transition-all shadow-lg text-center mobile-link">
+                    Book a Call
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="pt-32 md:pt-40 pb-20 px-6 lg:px-12 max-w-7xl mx-auto text-center">
+        <h1 class="text-5xl md:text-7xl font-light mb-6">Template <span class="font-bold">Library</span></h1>
+        <p class="text-gray-500 max-w-xl mx-auto text-lg">
+            A collection of concept builds and premium Shopify themes customized for performance and conversion.
+        </p>
+    </header>
+
+    <!-- GALLERY GRID -->
+    <section class="pb-32 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Card 1: Fashion Heritage -->
+            <div class="project-card group relative h-[500px] rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500">
+                <div class="absolute top-0 left-0 w-full h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2 z-10">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    <div class="ml-4 text-[10px] text-gray-400 font-mono">fashion-heritage.store</div>
+                </div>
+                <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
+                    <img src="assets/screenshots/Fashion Heritage.webp" alt="Fashion Heritage" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                         <h3 class="text-2xl font-bold">Fashion Heritage</h3>
+                         <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Smart Digital -->
+            <div class="project-card group relative h-[500px] rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500">
+                <div class="absolute top-0 left-0 w-full h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2 z-10">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    <div class="ml-4 text-[10px] text-gray-400 font-mono">smart-digital.io</div>
+                </div>
+                <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
+                    <img src="assets/screenshots/Smart Digital.webp" alt="Smart Digital" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                         <h3 class="text-2xl font-bold">Smart Digital</h3>
+                         <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
+                    </div>
+                </div>
+            </div>
+
+                         <h3 class="text-2xl font-bold">The Pizza Store</h3>
+                         <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8: Wookie -->
+            <div class="project-card group relative h-[500px] rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500">
+                <div class="absolute top-0 left-0 w-full h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2 z-10">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    <div class="ml-4 text-[10px] text-gray-400 font-mono">wookie-store.com</div>
+                </div>
+                <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
+                     <img src="assets/screenshots/Wookie.webp" alt="Wookie" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                         <h3 class="text-2xl font-bold">Wookie Store</h3>
+                         <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9: Hookah Store -->
+            <div class="project-card group relative h-[500px] rounded-3xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-500">
+                <div class="absolute top-0 left-0 w-full h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 gap-2 z-10">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    <div class="ml-4 text-[10px] text-gray-400 font-mono">hookah-premium.com</div>
+                </div>
+                <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
+                     <img src="assets/screenshots/Hookah Store.webp" alt="Hookah Store" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                         <h3 class="text-2xl font-bold">Hookah Store</h3>
+                         <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- UNIVERSAL FOOTER -->
+    <footer id="contact" class="bg-black text-white pt-32 pb-12 px-6 lg:px-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-end mb-32">
+                <!-- Left: Massive Text -->
+                <div>
+                     <button class="bg-[#111] border border-white/10 rounded-full px-4 py-1.5 mb-8 text-[10px] uppercase font-bold tracking-widest flex items-center gap-2">
+                        <div class="w-2 h-2 bg-lime rounded-full animate-pulse"></div> Available for work
+                     </button>
+                     <h2 class="text-5xl md:text-8xl font-bold leading-none tracking-tighter">
+                        Let's create something <br> <span class="text-gray-600">extraordinary</span> together.
+                     </h2>
+                </div>
+
+                <!-- Right: Profile Block -->
+                <div class="bg-[#111] p-10 rounded-[40px] border border-white/5 relative">
+                    <div class="flex items-center gap-6 mb-10">
+                        <img src="assets/images/aniket..png" alt="Aniket" class="w-16 h-16 rounded-full grayscale hover:grayscale-0 transition-all object-cover object-center">
+                        <div>
+                            <h4 class="text-xl font-bold">Aniket Shinde</h4>
+                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Shopify Developer</p>
+                            <div class="flex gap-4 mt-3">
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8">
+                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-1">Contact me</span>
+                        <a href="mailto:Aniketshinde.work@outlook.com" class="text-xl md:text-2xl font-bold hover:text-lime transition-colors block break-words">
+                            Aniketshinde.work<br><span class="text-gray-500 text-lg">@outlook.com</span>
+                        </a>
+                    </div>
+
+                    <p class="text-sm text-gray-400 leading-relaxed font-medium">
+                        Hit me up if you're looking for a <span class="text-white">fast, reliable Shopify dev</span> who can bring your vision to life.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-600">
+                <div class="flex items-center gap-2">
+                    <span class="text-white">Aniket Shinde</span> / 2026
+                </div>
+                <p>&copy; 2026 Aniket Shinde — Built for Shopify</p>
+                <a href="#" class="flex items-center gap-2 hover:text-white transition-colors">Back to top <i data-lucide="arrow-up" class="w-3 h-3"></i></a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Configuration -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    <!-- Premium Floating WhatsApp Widget -->
+    <a href="https://wa.me/918094998810?text=Hi%20Aniket%2C%20I%27d%20love%20to%20discuss%20a%20Shopify%20project%20with%20you%21" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center group">
+        <!-- Interactive Label -->
+        <div class="bg-black text-white text-[11px] font-bold py-2.5 px-4 rounded-l-full opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300 border border-white/10 border-r-0 uppercase tracking-widest hidden md:block shadow-xl">
+            Chat with me
+        </div>
+        <!-- Main Icon Button -->
+        <div class="relative">
+            <!-- Pulsing Aura -->
+            <div class="absolute inset-0 bg-lime rounded-full animate-ping opacity-25"></div>
+            <!-- Icon -->
+            <div class="relative bg-lime text-black w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(198,245,70,0.4)] group-hover:scale-110 transition-transform duration-300">
+                <!-- WhatsApp SVG Path -->
+                <svg viewBox="0 0 24 24" class="w-7 h-7 md:w-8 md:h-8 fill-current" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+            </div>
+        </div>
+    </a>
+</body>
+</html>
