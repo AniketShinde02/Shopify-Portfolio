@@ -112,16 +112,23 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal-up, .reveal-left, .reveal-zoom').forEach(el => observer.observe(el));
 
-// SIMPLE PARALLAX ON SCROLL (Hero Blob & Images)
-// SIMPLE PARALLAX ON SCROLL (Hero Blob & Images)
+// SIMPLE PARALLAX ON SCROLL (Hero Blob & Images) - Optimized with RAF
 if (lenis) {
+    let ticking = false;
     lenis.on('scroll', ({ scroll }) => {
-        const parallaxBg = document.querySelector('.parallax-bg');
-        if (parallaxBg) {
-            parallaxBg.style.transform = `translate3d(0, ${scroll * 0.1}px, 0)`;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const parallaxBg = document.querySelector('.parallax-bg');
+                if (parallaxBg) {
+                    parallaxBg.style.transform = `translate3d(0, ${scroll * 0.1}px, 0)`;
+                }
+                ticking = false;
+            });
+            ticking = true;
         }
     });
 }
+
 
 // FAQ Accordion Logic
 document.querySelectorAll('.faq-item').forEach(item => {
@@ -224,12 +231,25 @@ if (messageInput && charCount) {
     });
 }
 
-// Custom Cursor Logic (Premium Interaction)
+// Custom Cursor Logic (Premium Interaction) - Optimized with RAF
 const cursor = document.querySelector('.custom-cursor');
 if (cursor) {
+    let cursorX = 0, cursorY = 0;
+    let ticking = false;
+
     document.addEventListener('mousemove', (e) => {
-        cursor.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                cursor.style.transform = `translate3d(${cursorX - 10}px, ${cursorY - 10}px, 0)`;
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
+
 
     document.querySelectorAll('a, button, [role="button"]').forEach(el => {
         el.addEventListener('mouseenter', () => {
