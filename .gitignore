@@ -30,3 +30,7 @@ yarn-error.log*
 dist/
 build/
 .cache/
+
+# Client Internal Docs
+src/master_client_agreement.html
+src/client_documents_kit.html
