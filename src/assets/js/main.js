@@ -265,4 +265,3 @@ if (cursor) {
     });
 }
 
-console.log("Portfolio Optimized & Ready. ✨");
