@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgencyOS | Aniket Shinde</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --lime: #C6F546; --dark: #111111; --surface: #1A1A1A; }
+        body { font-family: 'Manrope', sans-serif; background-color: var(--dark); color: white; overflow-x: hidden; }
+        
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #111; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--lime); }
+
+        /* EDITABLE AREAS */
+        .editable { border-bottom: 1px dashed rgba(255,255,255,0.2); min-width: 20px; display: inline-block; transition: all 0.2s; }
+        .editing .editable:hover { background: rgba(198, 245, 70, 0.1); border-bottom: 1px dashed var(--lime); cursor: text; }
+        .editing .editable:focus { outline: none; background: white; color: black; border-radius: 2px; padding: 0 4px; }
+        
+        /* CUSTOM & IMPORTED PAGE EDITING */
+        /* Takes over entire page surface */
+        .editing .custom-page-surface, .editing .imported-page-surface { outline: 2px dashed var(--lime); cursor: text; }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: white; color: black; -webkit-print-color-adjust: exact; }
+            #sidebar, #toolbar, #tab-nav, .mobile-header, .no-print { display: none !important; }
+            #main-area { margin: 0; padding: 0; width: 100%; overflow: visible; }
+            .page { box-shadow: none !important; margin: 0 !important; border: none !important; width: 100% !important; page-break-after: always; }
+            .editable { border-bottom: none !important; }
+            .text-gray-400 { color: #666 !important; }
+            .bg-surface { background: white !important; }
+        }
+
+        /* A4 PAGE SIMULATION */
+        .page { background: white; color: #222; width: 210mm; min-height: 297mm; padding: 20mm; margin: 40px auto; position: relative; box-shadow: 0 0 50px rgba(0,0,0,0.5); transition: transform 0.3s; }
+    </style>
+</head>
+<body class="flex h-screen">
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="w-64 bg-surface border-r border-gray-800 flex flex-col p-6 hidden md:flex shrink-0 z-20">
+        <div class="mb-8 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded bg-[#C6F546] flex items-center justify-center text-black font-bold text-lg">A</div>
+                <h1 class="font-bold text-xl tracking-tight">Agency<span class="text-[#C6F546]">OS</span></h1>
+            </div>
+        </div>
+
+        <!-- MAIN NAV -->
+        <div class="text-[10px] font-bold text-gray-500 uppercase mb-2 tracking-widest">Core</div>
+        <nav class="space-y-1 mb-6">
+            <button onclick="switchTab('proposal')" id="nav-proposal" class="nav-btn w-full text-left p-2 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition flex items-center gap-3 bg-gray-800 text-white">
+                <i class="fas fa-file-contract w-4 text-center"></i> Proposal
+            </button>
+            <button onclick="switchTab('invoice')" id="nav-invoice" class="nav-btn w-full text-left p-2 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition flex items-center gap-3">
+                <i class="fas fa-file-invoice-dollar w-4 text-center"></i> Invoice
+            </button>
+            <button onclick="switchTab('handover')" id="nav-handover" class="nav-btn w-full text-left p-2 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition flex items-center gap-3">
+                <i class="fas fa-flag-checkered w-4 text-center"></i> Handover
+            </button>
+        </nav>
+
+        <!-- USER DOCS -->
+        <div class="flex justify-between items-center mb-2">
+            <div class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">My Documents</div>
+            <button onclick="document.getElementById('file-upload').click()" class="text-[10px] bg-[#C6F546] text-black px-2 py-0.5 rounded font-bold hover:bg-white transition" title="Import HTML File">+ Import</button>
+            <input type="file" id="file-upload" class="hidden" accept=".html,.txt" onchange="handleFileUpload(this)">
+        </div>
+        <nav class="space-y-1 flex-1 overflow-y-auto mb-4" id="custom-docs-list">
+            <!-- Dynamic Docs will appear here -->
+            <button onclick="switchTab('custom')" id="nav-custom" class="nav-btn w-full text-left p-2 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition flex items-center gap-3 group relative">
+                <i class="fas fa-file-alt w-4 text-center"></i> <span>Custom Doc</span>
+            </button>
+        </nav>
+
+        <!-- Formatting Tools (Visible in Edit Mode) -->
+        <div id="formatting-tools" class="mb-4 hidden p-3 bg-gray-800 rounded-lg animate-fade-in border border-gray-700">
+            <p class="text-[10px] font-bold text-gray-500 uppercase mb-2 tracking-widest flex justify-between">
+                Tools
+                <span class="text-[9px] text-gray-400 cursor-help" title="Select text to format">Selection</span>
+            </p>
+            <div class="grid grid-cols-4 gap-2 mb-2">
+                <button onclick="document.execCommand('undo')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition" title="Undo"><i class="fas fa-undo"></i></button>
+                <button onclick="document.execCommand('redo')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition" title="Redo"><i class="fas fa-redo"></i></button>
+                <button onclick="document.execCommand('removeFormat')" class="aspect-square rounded bg-[#111] hover:bg-red-500 hover:text-white flex items-center justify-center text-gray-300 transition" title="Clear Format"><i class="fas fa-eraser"></i></button>
+                <button onclick="deleteCurrentTab()" class="aspect-square rounded bg-[#111] hover:bg-red-600 hover:text-white flex items-center justify-center text-red-400 transition" title="Delete Page"><i class="fas fa-trash"></i></button>
+            </div>
+            <div class="h-px bg-gray-700 mb-2"></div>
+            <div class="grid grid-cols-4 gap-2">
+                <button onclick="document.execCommand('bold')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition" title="Bold"><i class="fas fa-bold"></i></button>
+                <button onclick="document.execCommand('italic')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition" title="Italic"><i class="fas fa-italic"></i></button>
+                <button onclick="document.execCommand('underline')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition" title="Underline"><i class="fas fa-underline"></i></button>
+                <button onclick="document.execCommand('insertUnorderedList')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition" title="List"><i class="fas fa-list-ul"></i></button>
+                <button onclick="document.execCommand('justifyLeft')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition" title="Left"><i class="fas fa-align-left"></i></button>
+                <button onclick="document.execCommand('justifyCenter')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition" title="Center"><i class="fas fa-align-center"></i></button>
+                <button onclick="document.execCommand('formatBlock', false, '<h3>')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition font-bold text-xs" title="Heading H3">H3</button>
+                <button onclick="document.execCommand('formatBlock', false, '<p>')" class="aspect-square rounded bg-[#111] hover:bg-[#C6F546] hover:text-black flex items-center justify-center text-gray-300 transition font-bold text-xs" title="Paragraph">P</button>
+            </div>
+        </div>
+
+        <div class="mt-auto border-t border-gray-800 pt-6">
+            <div class="text-xs text-gray-500 uppercase font-bold mb-4">Actions</div>
+            <button onclick="toggleEditMode()" id="edit-toggle-btn" class="w-full mb-3 p-3 rounded-lg border border-gray-700 hover:border-[#C6F546] text-[#C6F546] transition flex justify-center items-center gap-2">
+                <i class="fas fa-pen"></i> <span id="edit-status">Edit Mode: OFF</span>
+            </button>
+            <button onclick="window.print()" class="w-full bg-[#C6F546] text-black font-bold p-3 rounded-lg hover:bg-white transition flex justify-center items-center gap-2">
+                <i class="fas fa-print"></i> Save as PDF
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN AREA -->
+    <div class="flex-1 overflow-y-auto relative bg-[#111]" id="main-area">
+        
+        <!-- MOBILE HEADER -->
+        <div class="md:hidden p-4 bg-surface flex justify-between items-center sticky top-0 z-10 mobile-header">
+            <h2 class="font-bold text-[#C6F546]">AgencyOS</h2>
+            <div class="flex gap-3">
+                <button onclick="toggleEditMode()" class="text-white"><i class="fas fa-pen"></i></button>
+                <button onclick="window.print()" class="text-white"><i class="fas fa-print"></i></button>
+            </div>
+        </div>
+
+        <!-- 1. PROPOSAL TAB -->
+        <div id="proposal" class="tab-content block">
+            <div class="page text-gray-800">
+                <!-- Header -->
+                <div class="flex justify-between items-start border-b-2 border-black pb-6 mb-10">
+                    <div>
+                        <h1 class="text-4xl font-extrabold tracking-tighter mb-2">PROPOSAL</h1>
+                        <p class="text-sm font-semibold text-gray-500 tracking-widest uppercase">REF: <span class="editable" contenteditable="false">DEV-2026-001</span></p>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold">Aniket<span class="text-gray-400">.Work</span></div>
+                        <p class="text-xs text-gray-500 mt-1">Shopify Development Studio</p>
+                    </div>
+                </div>
+                <!-- Intro -->
+                <div class="mb-12">
+                    <p class="text-sm text-gray-400 font-bold uppercase tracking-widest mb-2">PREPARED FOR</p>
+                    <h2 class="text-3xl font-bold mb-4 editable" contenteditable="false">Client Name Here</h2>
+                    <p class="text-gray-600 leading-relaxed editable" contenteditable="false">
+                        Thank you for the opportunity. This proposal outlines the strategy to build a high-performance Shopify store that aligns with your brand's vision. Our goal is to create a seamless shopping experience.
+                    </p>
+                </div>
+                <!-- Scope Grid -->
+                <div class="grid grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gray-50 p-6 rounded border border-gray-100">
+                        <h3 class="font-bold text-lg mb-4 border-b pb-2">01. Setup & Config</h3>
+                        <ul class="text-sm space-y-2 text-gray-600 list-disc pl-4 editable" contenteditable="false">
+                            <li>Shopify Account & Domain Setup</li>
+                            <li>Payment Gateway Integration</li>
+                            <li>Shipping Zones & Calculations</li>
+                            <li>App Installation</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded border border-gray-100">
+                        <h3 class="font-bold text-lg mb-4 border-b pb-2">02. Design & Branding</h3>
+                        <ul class="text-sm space-y-2 text-gray-600 list-disc pl-4 editable" contenteditable="false">
+                            <li>Premium Theme Customization</li>
+                            <li>Logo & Color Implementation</li>
+                            <li>Homepage Layout Design</li>
+                            <li>Mobile Responsiveness Check</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Financials -->
+                <div class="mb-12">
+                    <h3 class="font-bold text-xl mb-4">Investment & Timeline</h3>
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-black text-white">
+                            <tr>
+                                <th class="p-3">Phase</th>
+                                <th class="p-3">Timeline</th>
+                                <th class="p-3 text-right">Amount (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="p-3 font-semibold editable" contenteditable="false">Phase 1: Design & Setup</td>
+                                <td class="p-3 editable" contenteditable="false">Week 1</td>
+                                <td class="p-3 text-right font-mono editable" contenteditable="false">15,000</td>
+                            </tr>
+                            <tr class="bg-gray-100 text-lg">
+                                <td class="p-3 font-bold">TOTAL</td>
+                                <td class="p-3"></td>
+                                <td class="p-3 text-right font-bold font-mono editable" contenteditable="false">15,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. INVOICE TAB -->
+        <div id="invoice" class="tab-content hidden">
+            <div class="page text-gray-800">
+                 <div class="flex justify-between items-start mb-12">
+                    <div>
+                        <div class="bg-black text-white px-4 py-1 inline-block text-xs font-bold tracking-widest mb-2">INVOICE</div>
+                        <h1 class="text-4xl font-bold">INV-<span class="editable" contenteditable="false">001</span></h1>
+                    </div>
+                    <div class="text-right text-sm">
+                        <p class="font-bold">Aniket Shinde</p>
+                    </div>
+                </div>
+                <p class="text-center text-gray-400 py-10">Ready for data entry...</p>
+            </div>
+        </div>
+
+        <!-- 3. HANDOVER TAB -->
+        <div id="handover" class="tab-content hidden">
+            <div class="page text-gray-800">
+                <h1 class="text-3xl font-bold mb-4">Project Handover</h1>
+                <p>Credentials and details go here.</p>
+            </div>
+        </div>
+
+        <!-- 4. CUSTOM DOC TAB (Clean Slate) -->
+        <div id="custom" class="tab-content hidden">
+            <div class="page text-gray-800 custom-page-surface" contenteditable="false">
+                <h1 class="text-4xl font-bold mb-4">New Document</h1>
+                <p>Start typing here... This entire page is editable.</p>
+            </div>
+        </div>
+        
+        <!-- CONTAINER FOR IMPORTED DOCS -->
+        <div id="imported-docs-container"></div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let isEditMode = false;
+        let currentTab = 'proposal';
+        let documents = []; // Array to hold imported doc data
+
+        // 1. EDIT MODE TOGGLE
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const btnLabel = document.getElementById('edit-status');
+            const toolsPanel = document.getElementById('formatting-tools');
+            const body = document.body;
+            
+            // Standard Fields
+            const editables = document.querySelectorAll('.editable');
+            // Full Page Surfaces (Custom + Imported)
+            const surfaces = document.querySelectorAll('.custom-page-surface, .imported-page-surface');
+
+            if (isEditMode) {
+                editables.forEach(el => el.contentEditable = "true");
+                surfaces.forEach(el => el.contentEditable = "true");
+                
+                body.classList.add('editing');
+                btnLabel.innerHTML = "Edit Mode: ON";
+                btnLabel.parentElement.classList.add('bg-gray-800');
+                toolsPanel.classList.remove('hidden');
+            } else {
+                editables.forEach(el => el.contentEditable = "false");
+                surfaces.forEach(el => el.contentEditable = "false");
+                
+                body.classList.remove('editing');
+                btnLabel.innerHTML = "Edit Mode: OFF";
+                btnLabel.parentElement.classList.remove('bg-gray-800');
+                toolsPanel.classList.add('hidden');
+                saveData();
+            }
+        }
+
+        // 2. TAB SWITCHING
+        function switchTab(tabId) {
+            currentTab = tabId;
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('block');
+                el.classList.add('hidden');
+            });
+            
+            const target = document.getElementById(tabId);
+            if(target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+            }
+
+            // Nav State
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('bg-gray-800', 'text-white');
+                el.classList.add('text-gray-400');
+            });
+            const btn = document.getElementById('nav-' + tabId);
+            if(btn) {
+                btn.classList.add('bg-gray-800', 'text-white');
+                btn.classList.remove('text-gray-400');
+            }
+        }
+
+        // 3. FILE IMPORT ENGINE
+        function handleFileUpload(input) {
+            const files = input.files;
+            if (files.length === 0) return;
+
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const content = e.target.result;
+                    createImportedTab(file.name, content);
+                };
+                reader.readAsText(file);
+            });
+            input.value = ''; // Reset
+        }
+
+        function createImportedTab(filename, htmlContent, isLoad = false) {
+            const docId = 'doc_' + Date.now() + Math.random().toString(36).substr(2, 5);
+            
+            // 1. Add Tab Button to Sidebar
+            const navList = document.getElementById('custom-docs-list');
+            const btn = document.createElement('button');
+            btn.onclick = () => switchTab(docId);
+            btn.id = 'nav-' + docId;
+            btn.className = 'nav-btn w-full text-left p-2 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition flex items-center gap-3 relative group';
+            btn.innerHTML = `<i class="fas fa-file-code w-4 text-center text-blue-400"></i> <span class="truncate w-32 text-xs">${filename}</span>`;
+            navList.appendChild(btn);
+
+            // 2. Parse Content (Smart Extraction)
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlContent, 'text/html');
+            // Try to find .page div, otherwise take body, otherwise raw
+            let finalContent = '';
+            const pageDiv = doc.querySelector('.page');
+            if(pageDiv) {
+                finalContent = pageDiv.innerHTML;
+            } else {
+                finalContent = doc.body ? doc.body.innerHTML : htmlContent;
+            }
+
+            // 3. Add Content Area
+            const container = document.getElementById('main-area');
+            const div = document.createElement('div');
+            div.id = docId;
+            div.className = 'tab-content hidden';
+            div.innerHTML = `
+                <div class="page text-gray-800 imported-page-surface" contenteditable="${isEditMode}">
+                    ${finalContent}
+                </div>
+            `;
+            container.appendChild(div);
+
+            // 4. Save to State
+            if(!isLoad) {
+                documents.push({ id: docId, name: filename, content: finalContent });
+                saveData();
+                switchTab(docId);
+            }
+        }
+
+        // 4. DELETE TAB
+        function deleteCurrentTab() {
+            if(['proposal', 'invoice', 'handover', 'custom'].includes(currentTab)) {
+                alert("Cannot delete core templates. Clear the content instead!");
+                return;
+            }
+            if(confirm("Delete this imported document?")) {
+                const id = currentTab;
+                // Remove from DOM
+                document.getElementById(id).remove();
+                document.getElementById('nav-' + id).remove();
+                
+                // Remove from State
+                documents = documents.filter(d => d.id !== id);
+                saveData();
+                
+                switchTab('custom');
+            }
+        }
+
+        // 5. STORAGE & RESTORE
+        function saveData() {
+            const data = {
+                customHtml: document.getElementById('custom').innerHTML,
+                docs: documents.map(d => {
+                    // Update content from live DOM before saving
+                    const el = document.querySelector(`#${d.id} .imported-page-surface`);
+                    return { ...d, content: el ? el.innerHTML : d.content };
+                })
+            };
+            localStorage.setItem('agencyOS_pro_backup', JSON.stringify(data));
+        }
+
+        function loadData() {
+            const saved = localStorage.getItem('agencyOS_pro_backup');
+            if (saved) {
+                const data = JSON.parse(saved);
+                if(data.customHtml) document.getElementById('custom').innerHTML = data.customHtml;
+                
+                if(data.docs && Array.isArray(data.docs)) {
+                    documents = data.docs;
+                    documents.forEach(d => {
+                        // Re-create tabs but don't save again
+                        // We need to bypass createImportedTab's 'save' logic
+                        // Manually rendering to avoid duplication in state
+                        
+                        // 1. Nav
+                        const navList = document.getElementById('custom-docs-list');
+                        const btn = document.createElement('button');
+                        btn.onclick = () => switchTab(d.id);
+                        btn.id = 'nav-' + d.id;
+                        btn.className = 'nav-btn w-full text-left p-2 rounded hover:bg-gray-800 text-gray-400 hover:text-white transition flex items-center gap-3 relative group';
+                        btn.innerHTML = `<i class="fas fa-file-code w-4 text-center text-blue-400"></i> <span class="truncate w-32 text-xs">${d.name}</span>`;
+                        navList.appendChild(btn);
+
+                        // 2. Content
+                        const container = document.getElementById('main-area');
+                        const div = document.createElement('div');
+                        div.id = d.id;
+                        div.className = 'tab-content hidden';
+                        div.innerHTML = `<div class="page text-gray-800 imported-page-surface" contenteditable="false">${d.content}</div>`;
+                        container.appendChild(div);
+                    });
+                }
+            }
+        }
+        
+        loadData();
+    </script>
+</body>
+</html>

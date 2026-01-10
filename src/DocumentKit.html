@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Client Kit (Editable) | Aniket Shinde</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;800&family=Inter:wght@400;500;600&display=swap');
+
+        :root {
+            --lime: #C6F546;
+            --dark: #111111;
+            --card-bg: #FFFFFF;
+            --text-main: #222222;
+            --text-light: #555555;
+            --border: #EEEEEE;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--dark);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* EDITABLE ZONES INDICATION */
+        [contenteditable]:hover {
+            outline: 2px dashed #C6F546;
+            background: rgba(198, 245, 70, 0.1);
+            cursor: text;
+            border-radius: 4px;
+        }
+        
+        [contenteditable]:focus {
+            outline: 2px solid var(--lime);
+            background: white;
+            color: black;
+        }
+
+        /* STICKY NAV PILLS */
+        .nav-container {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(16px);
+            padding: 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.15);
+            justify-content: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #CCCCCC;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: all 0.2s ease-in-out;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--lime);
+            color: var(--dark);
+            box-shadow: 0 4px 15px rgba(198, 245, 70, 0.3);
+        }
+
+        /* MAIN CARD STYLE */
+        .document-card {
+            background: var(--card-bg);
+            padding: 70px 60px;
+            border-radius: 4px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+            margin-bottom: 100px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #EEE;
+            break-after: page; 
+        }
+
+        /* PRO TIP BAR */
+        .pro-tip {
+            background: #333;
+            color: #C6F546;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px dashed #555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* HEADER BRANDING */
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 3px solid var(--dark);
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -1.5px;
+        }
+        .logo span { color: #888; }
+
+        .meta {
+            text-align: right;
+            font-size: 11px;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* WATERMARK */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-size: 100px;
+            font-weight: 800;
+            color: rgba(0,0,0,0.02);
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 0;
+            user-select: none;
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            letter-spacing: -1.5px;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 50px;
+            display: block;
+            border-left: 3px solid var(--lime);
+            padding-left: 15px;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #EEEEEE;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--lime);
+            margin-right: 12px;
+            border-radius: 50%;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        p, li {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        ul, ol { padding-left: 20px; margin-bottom: 30px; }
+        
+        li { margin-bottom: 10px; }
+
+        /* HIGHLIGHT BOXES */
+        .box {
+            background: #FAFAFA;
+            border: 1px solid #EEEEEE;
+            padding: 30px;
+            border-radius: 8px;
+            margin: 35px 0;
+        }
+
+        .box-warning {
+            background: #FFF9F9;
+            border: 1px solid #FFE5E5;
+            color: #AA0000;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .box-warning h3 { margin-top: 0; color: #AA0000; }
+        
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            font-family: 'Inter', sans-serif;
+        }
+        th {
+            text-align: left;
+            border-bottom: 2px solid var(--dark);
+            padding: 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #777;
+            background: #FAFAFA;
+        }
+        td {
+            border-bottom: 1px solid #EEEEEE;
+            padding: 18px 15px;
+            color: #222;
+            vertical-align: top;
+        }
+        .col-right { text-align: right; }
+        .total-row td { 
+            font-weight: 700; 
+            font-size: 20px; 
+            border-top: 2px solid var(--dark);
+            color: var(--dark);
+            background: #FAFAFA;
+        }
+
+        /* FIELDS FOR INPUT */
+        .field {
+            border-bottom: 2px solid #EEEEEE;
+            color: #0056b3;
+            min-width: 100px;
+            display: inline-block;
+            padding: 0 8px;
+            font-family: 'Inter', monospace;
+            font-weight: 600;
+            background: #FAFAFA;
+        }
+
+        /* SIGNATURES */
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 100px;
+            padding-top: 50px;
+            border-top: 2px dashed #DDD;
+        }
+        .sig-block { width: 45%; }
+        .sig-line { 
+            border-bottom: 2px solid var(--dark); 
+            height: 50px; 
+            margin-bottom: 20px;
+            position: relative; 
+        }
+        .sig-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: #888;
+        }
+
+        /* PRINT STYLES - Hides the Editor features */
+        @media print {
+            body { background: white; padding: 0; margin: 0; }
+            .nav-container, .pro-tip { display: none !important; }
+            .container { max-width: 100%; }
+            .document-card { 
+                box-shadow: none; 
+                margin: 0; 
+                padding: 40px; 
+                border-radius: 0;
+                border: 1px solid #EEE;
+                overflow: visible;
+                break-after: page; 
+            }
+            .watermark { opacity: 0.05; }
+            
+            /* Clean up editable fields for print */
+            [contenteditable] { 
+                border: none !important; 
+                background: transparent !important;
+                outline: none !important;
+                color: inherit !important;
+            }
+            .field { border-bottom: none !important; color: black; background: transparent; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HELPER BAR (Not shown in Print) -->
+    <div class="pro-tip">
+        <span>✏️ <strong>EDIT MODE:</strong> Click on any blue text (Name, Price) to edit directly. | 🖨️ Press <strong>CTRL + P</strong> to Save as PDF.</span>
+    </div>
+
+    <!-- NAVIGATION (STICKY) -->
+    <div class="nav-container">
+        <a href="#proposal" class="nav-link">1. Proposal</a>
+        <a href="#contract" class="nav-link">2. Master Agreement</a>
+        <a href="#amc" class="nav-link">3. AMC Support</a>
+        <a href="#handover" class="nav-link">4. Handover</a>
+        <a href="#faq" class="nav-link">5. FAQ</a>
+    </div>
+
+    <!-- 1. DETAILED PROPOSAL -->
+    <div id="proposal" class="document-card">
+        <div class="watermark">PROPOSAL</div>
+        <div class="doc-header">
+            <div class="logo">Aniket<span>.Work</span></div>
+            <div class="meta">
+                PROPOSAL REF: #2026-<span contenteditable="true">001</span><br>
+                VALID UNTIL: 7 DAYS<br>
+                PREPARED FOR: <span class="field" contenteditable="true">CLIENT NAME HERE</span>
+            </div>
+        </div>
+
+        <h1>Project Proposal</h1>
+        <span class="subtitle">Detailed E-Commerce Strategy & Scope</span>
+
+        <p>Thank you for considering me for your project. This document outlines a comprehensive plan to build a high-performance Shopify store tailored to your operational needs and brand identity.</p>
+
+        <h2>01. Project Objectives</h2>
+        <div class="box">
+            <p><strong>Goal:</strong> To design and develop a fully functional, mobile-responsive Shopify store using a premium pre-built theme structure.</p>
+            <p><strong>Key Focus Areas:</strong></p>
+            <ul>
+                <li><strong>User Experience (UX):</strong> Fast load times, intuitive navigation, and mobile optimization.</li>
+                <li><strong>Brand Identity:</strong> Consistent use of colors, typography, and visual hierarchy.</li>
+                <li><strong>Conversion:</strong> Optimized product pages, clear Call-to-Actions (CTAs), and frictionless checkout.</li>
+            </ul>
+        </div>
+
+        <h2>02. Scope of Work (Deliverables)</h2>
+        <p>The following items are explicitly included in this engagement:</p>
+        
+        <h3>A. Store Configuration</h3>
+        <ul>
+            <li>Shopify Account Setup & Ownership Transfer.</li>
+            <li>Domain Name configuration (DNS connection).</li>
+            <li>Payment Gateway Integration (Razorpay/Stripe/COD).</li>
+            <li>Shipping Zones & Auto-calculation setup.</li>
+        </ul>
+
+        <h3>B. Design & Branding</h3>
+        <ul>
+            <li>Premium Theme Installation & Licensing Setup.</li>
+            <li>Color Palette & Typography Implementation.</li>
+            <li>Homepage Layout (Hero Banners, Featured Collections, Trust Badges).</li>
+            <li>Navigation Menu Organization (Header & Footer).</li>
+        </ul>
+
+        <h3>C. Product & Content</h3>
+        <ul>
+            <li>Collection Structure Setup (Manual/Automated).</li>
+            <li>Product Template Design (Images, Variants, Pricing).</li>
+            <li>Standard Pages: About Us, Contact, FAQ.</li>
+            <li>Legal Pages: Privacy Policy, Terms of Service, Refund Policy.</li>
+        </ul>
+
+        <h2>03. Investment & Timeline</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Deliverable Phase</th>
+                    <th>Est. Timeline</th>
+                    <th class="col-right">Fee (INR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong>Phase 1: Setup & Design</strong><br>
+                        <span style="font-size: 13px; color: #666;">Theme setup, branding, homepage, and legal pages.</span>
+                    </td>
+                    <td>Week 1</td>
+                    <td class="col-right">₹ <span class="field" contenteditable="true">15,000</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Phase 2: Products & Launch</strong><br>
+                        <span style="font-size: 13px; color: #666;">Product upload, payment gateway, shipping, and final testing.</span>
+                    </td>
+                    <td>Week 2</td>
+                    <td class="col-right">₹ <span class="field" contenteditable="true">15,000</span></td>
+                </tr>
+                <tr class="total-row">
+                    <td>TOTAL INVESTMENT</td>
+                    <td>7-14 Days</td>
+                    <td class="col-right">₹ <span class="field" contenteditable="true">30,000</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p style="font-size:12px; color:#666;">* Note: Third-party costs (Shopify Plan, Domain, Paid Apps) are borne directly by the Client.</p>
+    </div>
+
+    <!-- 2. MASTER AGREEMENT (DETAILED) -->
+    <div id="contract" class="document-card">
+        <div class="watermark">CONTRACT</div>
+        <div class="doc-header">
+            <div class="logo">Aniket<span>.Work</span></div>
+            <div class="meta">
+                MASTER SERVICE AGREEMENT<br>
+                STRICTLY CONFIDENTIAL
+            </div>
+        </div>
+
+        <h1>Master Service Agreement</h1>
+        <span class="subtitle">Terms & Conditions of Engagement</span>
+
+        <p>This agreement governs the relationship between <strong>Aniket Shinde</strong> (The "Developer") and the Client.</p>
+
+        <h2>1. Detailed Scope & Limitations</h2>
+        <p>The Developer will build the store using a <strong>Pre-Built Shopify Theme</strong>. This approach ensures stability, speed, and future-proof updates.</p>
+        <div class="box-warning">
+            <h3>Explicit Exclusions</h3>
+            <p>Unless specifically agreed in a separate "Add-On Quote", the following are <strong>NOT included</strong>:</p>
+            <ul>
+                <li><strong>Custom Code:</strong> Writing custom Liquid/JavaScript functionality outside the theme's default features.</li>
+                <li><strong>Content Creation:</strong> Writing product descriptions, blog posts, or creating graphic assets/banners.</li>
+                <li><strong>Marketing:</strong> SEO backlinks, Social Media Management, or Ad Campaigns.</li>
+                <li><strong>Sales Guarantees:</strong> The Developer builds the "infrastructure"; Sales depend on the Client's product and marketing.</li>
+            </ul>
+        </div>
+
+        <h2>2. Client Responsibilities</h2>
+        <p>To ensure the 7-14 day timeline is met, the Client agrees to provide:</p>
+        <ul>
+            <li><strong>Assets:</strong> High-resolution Logo (PNG), Brand Color Codes, and Font preferences.</li>
+            <li><strong>Product Data:</strong> Excel sheet with Product Names, Prices, Descriptions, and Images.</li>
+            <li><strong>Credentials:</strong> Access to Domain Registrar (GoDaddy/Namecheap) if DNS setup is required.</li>
+            <li><strong>Payments:</strong> Timely payment of the Advance and Final invoices.</li>
+        </ul>
+        <p><em>Delays in providing these assets will result in a day-for-day extension of the project deadline.</em></p>
+
+        <h2>3. Payment Terms</h2>
+        <ul>
+            <li><strong><span contenteditable="true">50%</span> Non-Refundable Advance:</strong> Required to secure the development slot and commence work.</li>
+            <li><strong><span contenteditable="true">50%</span> Completion Payment:</strong> Due upon project completion, <strong>BEFORE</strong> the Store Ownership is transferred to the Client.</li>
+        </ul>
+
+        <h2>4. Revisions Policy</h2>
+        <p>The project fee includes <strong><span contenteditable="true">Two (2)</span> Rounds of Consolidation Revisions</strong> during the design phase. </p>
+        <ul>
+            <li>Revisions are limited to: Font changes, Color tweaks, Image swaps, and Section re-ordering.</li>
+            <li><strong>Major Re-designs:</strong> Changing the entire theme or layout structure AFTER approval is billable at an hourly rate.</li>
+        </ul>
+
+        <h2>5. Liability & Hosting</h2>
+        <p>The store is hosted on Shopify's secure cloud infrastructure.</p>
+        <ul>
+            <li><strong>Security:</strong> Shopify manages SSL certificates and PCI-DSS compliance.</li>
+            <li><strong>Uptime:</strong> The Developer is not responsible for platform outages or server downtime caused by Shopify.</li>
+            <li><strong>Data:</strong> The Client is responsible for maintaining secure passwords.</li>
+        </ul>
+
+        <div class="signature-section">
+            <div class="sig-block">
+                <div class="sig-label">Client Signature</div>
+                <div class="sig-line"></div>
+                <div class="field" contenteditable="true" style="border:none; color:black;">Name: ____________________</div><br>
+                <div class="field" contenteditable="true" style="border:none; color:black;">Date: ____________________</div>
+            </div>
+            <div class="sig-block">
+                <div class="sig-label">Developer Signature</div>
+                <div class="sig-line"></div>
+                <div class="field" style="border:none; color:black;">Name: Aniket Shinde</div><br>
+                <div class="field" style="border:none; color:black;">Date: <span id="sign-date"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. AMC AGREEMENT -->
+    <div id="amc" class="document-card">
+        <div class="watermark">SUPPORT</div>
+        <div class="doc-header">
+            <div class="logo">Aniket<span>.Work</span></div>
+            <div class="meta">MAINTENANCE RETAINER</div>
+        </div>
+
+        <h1>Annual Maintenance (AMC)</h1>
+        <span class="subtitle">Ongoing Support & Optimization</span>
+
+        <p>E-commerce is not a "one-time" event. It requires regular updates to stay secure and fast. This Optional Add-on ensures your store remains in peak condition.</p>
+
+        <h2>Included Services</h2>
+        <div class="box">
+            <ul contenteditable="true">
+                <li><strong>Monthly Health Check:</strong> Monitoring broken links, 404 errors, and speed scores.</li>
+                <li><strong>Content Updates:</strong> Uploading up to 10 New Products per month or updating Banners.</li>
+                <li><strong>App Management:</strong> Installing/Uninstalling apps and ensuring no code residue is left.</li>
+                <li><strong>Theme Updates:</strong> Safely updating the theme version when available.</li>
+            </ul>
+        </div>
+
+        <h2>Pricing Model</h2>
+        <table>
+            <tr class="total-row">
+                <td>Monthly Retainer Fee</td>
+                <td class="col-right">₹ <span class="field" contenteditable="true">5,000</span> /mo</td>
+            </tr>
+        </table>
+        <p style="font-size:13px; color:#666;">* Term: Minimum 3 Months. Cancel anytime with 7 days' notice.</p>
+    </div>
+
+    <!-- 4. HANDOVER -->
+    <div id="handover" class="document-card">
+        <div class="watermark">CLOSURE</div>
+        <div class="doc-header">
+            <div class="logo">Aniket<span>.Work</span></div>
+            <div class="meta">PROJECT HANDOVER</div>
+        </div>
+
+        <h1>Project Handover</h1>
+        <span class="subtitle">Credentials, Ownership & Training</span>
+
+        <p>Congratulations on your new store! Upon final payment, the following handover process is initiated:</p>
+
+        <h2>1. Ownership Transfer</h2>
+        <p>The "Store Ownership" rights within Shopify will be transferred to your email address: <strong><span class="field" contenteditable="true">client@email.com</span></strong>. You will receive an email from Shopify to accept this transfer.</p>
+
+        <h2>2. Training & Documentation</h2>
+        <p>To ensure you are independent, I will provide a personalized <strong>Video Walkthrough (Loom/Screen Recording)</strong> covering:</p>
+        <ol contenteditable="true">
+            <li>How to process and fulfill Orders.</li>
+            <li>How to add/edit Products and Inventory.</li>
+            <li>How to change Homepage Banners and Text.</li>
+            <li>How to generate Discount Codes.</li>
+        </ol>
+
+        <h2>3. Post-Launch Support</h2>
+        <div class="box">
+            <p><strong>7-Day Warranty:</strong> You have 7 days of complimentary support to report any bugs or broken links found in the delivered work. These will be fixed free of charge.</p>
+        </div>
+    </div>
+
+    <!-- 5. FAQ -->
+    <div id="faq" class="document-card">
+        <div class="doc-header">
+            <div class="logo">Aniket<span>.Work</span></div>
+            <div class="meta">KNOWLEDGE BASE</div>
+        </div>
+
+        <h1>Frequently Asked Questions</h1>
+        <span class="subtitle">For Clarity & Transparency</span>
+
+        <h2>Q: Do I need a paid Shopify Plan?</h2>
+        <p>A: <strong>Yes.</strong> To remove the "Password Page" and allow customers to checkout (pay money), you must have an active Shopify Subscription (Basic Plan). This is paid directly to Shopify.</p>
+
+        <h2>Q: Is my store secure?</h2>
+        <p>A: <strong>100%.</strong> Shopify provides banking-level security (PCI DSS Level 1 Compliant) and free SSL certificates. Your customer's data is encrypted and safe.</p>
+
+        <h2>Q: Can the store handle high traffic?</h2>
+        <p>A: <strong>Yes.</strong> Shopify is a cloud-based platform built to scale. Whether you have 10 visitors or 100,000 during a flash sale, the servers will not crash.</p>
+
+        <h2>Q: Do you guarantee sales?</h2>
+        <p>A: <strong>No.</strong> I build the "Engine" (The Store). You are the "Driver". Driving traffic (Fuel) and making sales depends on your marketing strategy, product demand, and ad spend.</p>
+
+        <h2>Q: Can I manage the store myself?</h2>
+        <p>A: <strong>Absolutely.</strong> Shopify is designed for non-technical business owners. You will be able to change prices, images, and text without writing a single line of code.</p>
+    </div>
+
+</div>
+
+<script>
+    const d = new Date().toLocaleDateString('en-GB');
+    // document.getElementById('cur-date-1').innerText = d; 
+    // Commented out to allow editing manually if dates differ, but initial load could use script if nice.
+    document.getElementById('sign-date').innerText = d;
+</script>
+
+</body>
+</html>
