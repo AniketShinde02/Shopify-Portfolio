@@ -90,6 +90,7 @@
         
         <div class="hidden md:flex gap-8 text-sm font-medium text-gray-500">
             <a href="index.html#work" class="hover:text-black transition-colors">Work</a>
+            <a href="projects.html" class="hover:text-black transition-colors">Library</a>
             <a href="pricing.html" class="hover:text-black transition-colors">Pricing</a>
             <a href="about.html" class="text-black font-bold">About & Contact</a>
         </div>
@@ -117,6 +118,7 @@
             <!-- Links (Centered & Bold) -->
              <div class="flex flex-col items-center gap-6 w-full pt-4">
                 <a href="index.html#work" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Work</a>
+                <a href="projects.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Library</a>
                 <a href="pricing.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Pricing</a>
                 <a href="about.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">About & Contact</a>
             </div>
@@ -409,29 +411,42 @@
                 </div>
 
                 <!-- Right: Profile Block -->
-                <div class="bg-[#111] p-10 rounded-[40px] border border-white/5 relative">
-                    <div class="flex items-center gap-6 mb-10">
-                        <img src="assets/images/aniket..png" alt="Aniket" class="w-16 h-16 rounded-full grayscale hover:grayscale-0 transition-all object-cover object-center">
-                        <div>
-                            <h4 class="text-xl font-bold">Aniket Shinde</h4>
-                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Shopify Developer</p>
-                            <div class="flex gap-4 mt-3">
-                                <a href="https://www.instagram.com/introvert_ani.26/" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-                                <a href="https://www.linkedin.com/in/aniket-shinde-b12526292/" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                <div class="bg-[#111] p-10 rounded-[40px] border border-white/5 relative flex flex-col md:flex-row gap-12">
+                    <div class="flex-1">
+                        <div class="flex items-center gap-6 mb-10">
+                            <img src="assets/images/aniket..png" alt="Aniket" class="w-16 h-16 rounded-full grayscale hover:grayscale-0 transition-all object-cover object-center">
+                            <div>
+                                <h4 class="text-xl font-bold">Aniket Shinde</h4>
+                                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Shopify Developer</p>
+                                <div class="flex gap-4 mt-3">
+                                    <a href="https://www.instagram.com/introvert_ani.26/" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                                    <a href="https://www.linkedin.com/in/aniket-shinde-b12526292/" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                                </div>
                             </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-1">Contact me</span>
+                            <a href="mailto:aniketshinde.work@outlook.com" class="text-xl md:text-2xl font-bold hover:text-lime transition-colors block break-words leading-tight">
+                                aniketshinde.work<br><span class="text-gray-500 text-lg">@outlook.com</span>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="mb-8">
-                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-1">Contact me</span>
-                        <a href="mailto:aniketshinde.work@outlook.com" class="text-xl md:text-3xl font-bold hover:text-lime transition-colors block break-words">
-                            aniketshinde.work<br><span class="text-gray-500 text-lg">@outlook.com</span>
-                        </a>
+                    <div class="flex flex-col gap-8 md:border-l md:border-white/5 md:pl-12">
+                        <div>
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-4">Quick Links</span>
+                            <ul class="space-y-3 text-sm font-medium text-gray-400">
+                                <li><a href="index.html#work" class="hover:text-white transition-colors">Selected Work</a></li>
+                                <li><a href="projects.html" class="text-lime hover:underline transition-all font-bold">Project Library</a></li>
+                                <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing Plans</a></li>
+                                <li><a href="about.html" class="hover:text-white transition-colors">About & Contact</a></li>
+                            </ul>
+                        </div>
+                        <p class="text-[11px] text-gray-600 leading-relaxed font-medium max-w-[180px]">
+                            Building <span class="text-gray-400">high-performance</span> stores that scale globally.
+                        </p>
                     </div>
-
-                    <p class="text-sm text-gray-400 leading-relaxed font-medium">
-                        Hit me up if you're looking for a <span class="text-white">fast, reliable Shopify dev</span> who can bring your vision to life.
-                    </p>
                 </div>
             </div>
 

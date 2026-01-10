@@ -1,379 +1,486 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pricing & Packages | Aniket Shinde - Shopify Expert</title>
-    <meta name="description" content="Transparent, fixed-price Shopify development packages. Choose between Essential Launch or Growth Scale to kickstart your e-commerce journey with Aniket Shinde.">
-    <link rel="canonical" href="https://aniketshinde.work/pricing.html">
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <meta name="description" content="Transparent Shopify development packages. Choose between Basic, Standard or Premium to kickstart your e-commerce journey.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Component Loader -->
+    <script src="assets/js/components.js"></script>
     
     <!-- Fonts & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --lime: #C6F546;
             --dark: #0A0A0A;
-            --light: #FFFFFF;
         }
 
         body { 
             font-family: 'Manrope', sans-serif; 
-            scroll-behavior: smooth;
-        }
-        .font-manrope { font-family: 'Manrope', sans-serif; }
-
-        /* PREMIUM SCROLLBAR */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--dark); }
-        ::-webkit-scrollbar-thumb { 
-            background: #222; 
-            border-radius: 10px;
-            border: 2px solid var(--dark);
-        }
-        ::-webkit-scrollbar-thumb:hover { background: var(--lime); }
-
-        /* LENIS SMOOTH SCROLL */
-        html.lenis { height: auto; }
-        .lenis.lenis-smooth { scroll-behavior: auto; }
-        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
-        .lenis.lenis-stopped { overflow: hidden; }
-        .lenis.lenis-scrolling iframe { pointer-events: none; }
-
-        /* IMAGE PERFORMANCE */
-        img {
-            backface-visibility: hidden;
-            -webkit-font-smoothing: subpixel-antialiased;
+            background-color: #000000;
         }
 
-        /* PREMIUM GLASSMORPHISM */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .text-lime { color: var(--lime); }
+        .bg-lime { background-color: var(--lime); }
+        .border-lime { border-color: var(--lime); }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--lime);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
         }
 
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: inline-flex;
+            animation: marquee 30s linear infinite;
+        }
+        
+        /* Marquee Track Animation */
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            animation: marquee-scroll 50s linear infinite;
+        }
+        
+        /* Slow Spin Animation */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 3s linear infinite;
+        }
 
-        /* CUSTOM CURSOR */
-        @media (min-width: 1024px) {
-            .custom-cursor {
-                width: 20px;
-                height: 20px;
-                background: var(--lime);
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9999;
-                mix-blend-mode: difference;
-                transition: transform 0.1s ease;
-            }
+        /* Glassmorphism */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        /* Pricing Card Hover */
+        .pricing-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Smooth reveal for details */
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        /* Check Item Style */
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+        }
+        
+        /* Comparison Row Hover */
+        .comparison-row {
+            transition: background-color 0.2s ease;
+        }
+        .comparison-row:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        
+        /* Highlight Card */
+        .highlight-card {
+            box-shadow: 0 25px 50px -12px rgba(198, 245, 70, 0.15);
         }
     </style>
-
 </head>
-<body class="bg-black text-white font-manrope selection:bg-lime selection:text-dark overflow-x-hidden">
+<body class="selection:bg-lime selection:text-black" data-theme="dark">
+
     <!-- Custom Cursor -->
     <div class="custom-cursor hidden lg:block"></div>
 
+    <!-- HEADER COMPONENT -->
+    <div data-component="header"></div>
 
-    <!-- Sticky Navigation -->
-    <!-- Sticky Navigation -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 px-6 py-4 flex justify-between items-center bg-black border-b border-white/5 shadow-lg">
-
-        <a href="index.html" class="text-xl font-bold tracking-tight text-white">Aniket<span class="text-lime">.</span></a>
-        
-        <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-            <a href="index.html#work" class="hover:text-white transition-colors">Work</a>
-            <a href="pricing.html" class="text-white font-bold transition-colors">Pricing</a>
-            <a href="about.html" class="hover:text-white transition-colors">About & Contact</a>
-        </div>
-        
-        <a href="about.html#contact" class="hidden md:block bg-white text-black px-5 py-2 rounded-full text-xs font-bold hover:bg-lime hover:text-black transition-all">Let's Talk</a>
-        
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="md:hidden text-white"><i data-lucide="menu"></i></button>
-    </nav>
-
-    <!-- Mobile Menu Modal (Full Width Top Sheet) -->
-    <!-- Outer Overlay (Backdrop) -->
-    <div id="mobile-menu" class="group fixed inset-0 z-[60] hidden flex-col justify-start bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300">
-        
-        <!-- The Card (Full Width Slide Down) -->
-        <div class="menu-content w-full bg-white rounded-b-[40px] px-6 py-6 shadow-2xl relative flex flex-col gap-8 transform transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-[.opacity-0]:-translate-y-full">
-            
-            <!-- Header (Logo + Close Button aligned with Navbar) -->
-            <div class="w-full flex justify-between items-center">
-                 <span class="text-2xl font-bold tracking-tight text-black">Aniket<span class="text-lime">.</span></span>
-                 <button id="close-menu-btn" class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 text-black hover:bg-lime transition-colors">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-
-            <!-- Links (Centered & Bold) -->
-             <div class="flex flex-col items-center gap-6 w-full pt-4">
-                <a href="index.html#work" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Work</a>
-                <a href="pricing.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">Pricing</a>
-                <a href="about.html" class="text-3xl font-bold text-gray-900 hover:text-lime transition-colors mobile-link">About & Contact</a>
-            </div>
-
-            <!-- Footer (Email + CTA) -->
-            <div class="w-full text-center pb-6 flex flex-col items-center gap-6">
-                 <div>
-                    <p class="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-2">Email</p>
-                    <a href="mailto:aniketshinde.work@outlook.com" class="text-base font-medium text-gray-600 border-b border-gray-200">aniketshinde.work@outlook.com</a>
-                 </div>
-                 
-                 <a href="https://cal.com/aniket.work" target="_blank" class="flex items-center justify-center bg-[#111] text-white w-full py-5 rounded-full text-xl font-bold hover:bg-lime hover:text-black transition-all shadow-lg text-center mobile-link">
-                    Book a Call
-                </a>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- PRICING HERO -->
-    <section class="pt-32 md:pt-40 pb-20 px-6 lg:px-12 bg-black text-white min-h-[50vh] flex flex-col justify-center items-center text-center">
-        <span class="text-lime font-bold uppercase tracking-widest text-xs mb-4 block reveal-up">Investment</span>
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tight reveal-up">Simple, Fixed Pricing.</h1>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto reveal-up">No hidden fees. No hourly billing surprises. Just clear deliverables.</p>
-    </section>
-
-    <!-- PACKAGES (The Main Content) -->
-    <section id="packages" class="py-12 px-6 lg:px-12 bg-[#080808] text-white border-t border-white/5">
+    <!-- Header Section -->
+    <header class="pt-48 pb-20 px-6 lg:px-12 text-center bg-black">
         <div class="max-w-4xl mx-auto">
-            
-            <!-- Packages Split -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-lime/10 rounded-full mb-8 border border-lime/20">
+                <span class="w-1.5 h-1.5 bg-lime rounded-full animate-pulse"></span>
+                <span class="text-[9px] font-black uppercase tracking-[0.3em] text-lime">Theme Based Shopify Developer</span>
+            </div>
+            <h1 class="text-5xl md:text-8xl lg:text-[110px] font-black mb-10 tracking-tighter leading-[0.85] text-white">
+                Simple, Fixed Pricing.
+            </h1>
+            <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed mb-12">
+                No hidden fees. No hourly billing surprises. Just clear deliverables.
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-6">
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] bg-lime text-black px-4 py-2 rounded-lg">Introductory Rates</span>
+                <span class="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Pricing based on latest gig details</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- PRICING CARDS -->
+    <section class="py-24 px-6 lg:px-12 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
                 
-                <!-- Package 1: Essential Launch -->
-                <div class="bg-[#0A0A0A] p-6 md:p-12 hover:bg-[#0f0f0f] transition-colors group reveal-left flex flex-col h-full">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Essential Launch</h3>
-                            <p class="text-gray-500 text-xs uppercase tracking-wider font-bold">Best for New Brands</p>
-                        </div>
-                        <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-lime group-hover:bg-lime group-hover:text-black transition-all">
-                            <span class="text-lg font-bold">1</span>
-                        </div>
+                <!-- BASIC -->
+                <div class="pricing-card bg-zinc-900/50 p-10 md:p-12 rounded-[48px] border border-zinc-800 flex flex-col hover:border-zinc-700">
+                    <div class="mb-10">
+                        <div class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500 mb-2">Package 01</div>
+                        <h3 class="text-2xl font-black text-white">Essential Launch</h3>
+                        <p class="text-sm text-zinc-400 mt-2 font-medium">Best for new brands</p>
                     </div>
                     
-                    <p class="text-gray-400 text-sm mb-10 leading-relaxed">
-                        Get a professional, mobile-ready store built on Online Store 2.0. I handle the technical setup so you can start selling immediately.
-                    </p>
-                    
-                    <div class="space-y-6 mb-12 flex-grow">
-                        <!-- Feature -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-1.5 h-1.5 rounded-full bg-lime mt-2 shrink-0"></div>
-                            <div>
-                                <h4 class="text-white text-sm font-bold">Premium Theme Setup</h4>
-                                <p class="text-xs text-gray-500 mt-1">Configuration of typography, colors, and layout (Dawn/Impulse).</p>
-                            </div>
+                    <div class="mb-10">
+                        <div class="flex items-baseline gap-1 text-white">
+                            <span class="text-5xl font-black tracking-tighter">₹7,581</span>
                         </div>
-                        <!-- Feature -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-1.5 h-1.5 rounded-full bg-lime mt-2 shrink-0"></div>
-                            <div>
-                                <h4 class="text-white text-sm font-bold">Core Integrations</h4>
-                                <p class="text-xs text-gray-500 mt-1">Payment Gateways (Razorpay/Stripe) & Shipping profiles.</p>
-                            </div>
-                        </div>
-                        <!-- Feature -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-1.5 h-1.5 rounded-full bg-lime mt-2 shrink-0"></div>
-                            <div>
-                                <h4 class="text-white text-sm font-bold">Content Upload</h4>
-                                <p class="text-xs text-gray-500 mt-1">Upload of up to 10 products and setup of legal/policy pages.</p>
-                            </div>
-                        </div>
-                         <!-- Feature -->
-                         <div class="flex items-start gap-4">
-                            <div class="w-1.5 h-1.5 rounded-full bg-lime mt-2 shrink-0"></div>
-                            <div>
-                                <h4 class="text-white text-sm font-bold">No-Code Handover</h4>
-                                <p class="text-xs text-gray-500 mt-1">Fully editable sections so you don't need a dev for text changes.</p>
-                            </div>
+                        <div class="flex items-center gap-4 mt-4">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-lime bg-lime/10 px-3 py-1 rounded-full">4 Days Delivery</span>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-zinc-500">2 Revisions</span>
                         </div>
                     </div>
 
-                    <a href="mailto:aniketshinde.work@outlook.com?subject=Interest in Essential Launch Package" class="w-full block text-center py-4 rounded-xl border border-white/20 text-sm font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Book Launch</a>
+                    <div class="space-y-4 mb-12 flex-grow">
+                        <div class="check-item font-medium text-zinc-300">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Premium Theme Setup
+                        </div>
+                        <div class="check-item font-medium text-zinc-300">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Core Integrations
+                        </div>
+                        <div class="check-item font-medium text-zinc-300">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Content Upload
+                        </div>
+                        <div class="check-item font-medium text-zinc-300">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            No-Code Handover
+                        </div>
+                    </div>
+
+                    <a href="about.html#contact" class="w-full py-5 rounded-full bg-zinc-800 text-white text-[10px] font-black uppercase tracking-[0.3em] text-center hover:bg-lime hover:text-black transition-all duration-500">
+                        BOOK LAUNCH
+                    </a>
                 </div>
 
-                <!-- Package 2: Growth Scale -->
-                <div class="bg-[#0A0A0A] p-6 md:p-12 hover:bg-[#0f0f0f] transition-colors group reveal-right relative flex flex-col h-full">
-                    <div class="absolute top-0 right-0 bg-lime text-black text-[10px] font-bold px-4 py-2 uppercase tracking-widest rounded-bl-xl z-10">Most Popular</div>
-                    
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Growth Scale</h3>
-                            <p class="text-gray-500 text-xs uppercase tracking-wider font-bold">For Scaling & Migration</p>
-                        </div>
-                        <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-lime group-hover:bg-lime group-hover:text-black transition-all">
-                            <span class="text-lg font-bold">2</span>
-                        </div>
+                <!-- STANDARD -->
+                <div class="pricing-card bg-zinc-900 p-10 md:p-12 rounded-[48px] border border-lime/30 flex flex-col relative scale-105 z-10 highlight-card">
+                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-lime text-black px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] shadow-xl">
+                        MOST POPULAR
                     </div>
                     
-                    <p class="text-gray-400 text-sm mb-10 leading-relaxed">
-                        A performance-focused build. I implement no-code custom solutions to add unique features and optimize speed for high conversion rates.
-                    </p>
+                    <div class="mb-10 mt-2">
+                        <div class="text-[10px] font-black uppercase tracking-[0.4em] text-lime mb-2">Package 02</div>
+                        <h3 class="text-2xl font-black text-white">Growth Scale</h3>
+                        <p class="text-sm text-zinc-400 mt-2 font-medium">For scaling & migration</p>
+                    </div>
                     
-                    <div class="space-y-6 mb-12 flex-grow">
-                        <!-- Feature -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-1.5 h-1.5 rounded-full bg-lime mt-2 shrink-0"></div>
-                            <div>
-                                <h4 class="text-white text-sm font-bold">Everything in Essential</h4>
-                                <p class="text-xs text-gray-500 mt-1">Foundational store setup plus product/customer data migration.</p>
-                            </div>
+                    <div class="mb-10">
+                        <div class="flex items-baseline gap-1 text-white">
+                            <span class="text-5xl font-black tracking-tighter">₹13,266</span>
                         </div>
-                        <!-- Feature -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-1.5 h-1.5 rounded-full bg-lime mt-2 shrink-0"></div>
-                            <div>
-                                <h4 class="text-white text-sm font-bold">No-Code Sections</h4>
-                                <p class="text-xs text-gray-500 mt-1">Reusable code blocks like sliders, tabbed content, or custom banners.</p>
-                            </div>
-                        </div>
-                        <!-- Feature -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-1.5 h-1.5 rounded-full bg-lime mt-2 shrink-0"></div>
-                            <div>
-                                <h4 class="text-white text-sm font-bold">Speed Optimization</h4>
-                                <p class="text-xs text-gray-500 mt-1">Manual code cleanup and app audit to improve page load speed.</p>
-                            </div>
-                        </div>
-                        <!-- Feature -->
-                        <div class="flex items-start gap-4">
-                            <div class="w-1.5 h-1.5 rounded-full bg-lime mt-2 shrink-0"></div>
-                            <div>
-                                <h4 class="text-white text-sm font-bold">Basic Theme Tweaks</h4>
-                                <p class="text-xs text-gray-500 mt-1">Small UI adjustments to the header, footer, or product pages.</p>
-                            </div>
+                        <div class="flex items-center gap-4 mt-4">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-lime bg-lime/10 px-3 py-1 rounded-full">7 Days Delivery</span>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-zinc-500">4 Revisions</span>
                         </div>
                     </div>
 
-                    <a href="mailto:aniketshinde.work@outlook.com?subject=Interest in Growth Scale Package" class="w-full block text-center py-4 rounded-xl bg-lime text-black border border-lime text-sm font-bold uppercase tracking-widest hover:bg-black hover:text-white hover:shadow-2xl hover:shadow-black/20 transition-all">Start Growth</a>
+                    <div class="space-y-4 mb-12 flex-grow">
+                        <div class="check-item font-medium text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Everything in Essential
+                        </div>
+                        <div class="check-item font-medium text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            No-Code Sections
+                        </div>
+                        <div class="check-item font-medium text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Speed Optimization
+                        </div>
+                        <div class="check-item font-medium text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Basic Theme Tweaks
+                        </div>
+                    </div>
+
+                    <a href="about.html#contact" class="w-full py-5 rounded-full bg-lime text-black text-[10px] font-black uppercase tracking-[0.3em] text-center hover:bg-white transition-all duration-500">
+                        START GROWTH
+                    </a>
+                </div>
+
+                <!-- PREMIUM -->
+                <div class="pricing-card bg-zinc-900/50 p-10 md:p-12 rounded-[48px] border border-zinc-800 flex flex-col hover:border-zinc-700">
+                    <div class="mb-10">
+                        <div class="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500 mb-2">Package 03</div>
+                        <h3 class="text-2xl font-black text-white">Advanced Setup</h3>
+                        <p class="text-sm text-zinc-400 mt-2 font-medium">For established brands</p>
+                    </div>
+                    
+                    <div class="mb-10">
+                        <div class="flex items-baseline gap-1 text-white">
+                            <span class="text-5xl font-black tracking-tighter">₹17,056</span>
+                        </div>
+                        <div class="flex items-center gap-4 mt-4">
+                            <span class="text-[10px] font-black uppercase tracking-widest text-lime bg-lime/10 px-3 py-1 rounded-full">10 Days Delivery</span>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-zinc-500">5 Revisions</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 mb-12 flex-grow">
+                        <div class="check-item font-medium text-zinc-300">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Everything in Growth
+                        </div>
+                        <div class="check-item font-medium text-zinc-300">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Advanced Performance
+                        </div>
+                        <div class="check-item font-medium text-zinc-300">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Custom Functionality
+                        </div>
+                        <div class="check-item font-medium text-zinc-300">
+                            <i data-lucide="check" class="w-5 h-5 text-lime"></i>
+                            Priority Support
+                        </div>
+                    </div>
+
+                    <a href="about.html#contact" class="w-full py-5 rounded-full bg-zinc-800 text-white text-[10px] font-black uppercase tracking-[0.3em] text-center hover:bg-lime hover:text-black transition-all duration-500">
+                        GO PREMIUM
+                    </a>
                 </div>
 
             </div>
-            
-            <p class="text-center text-gray-600 text-xs mt-8">Need something smaller? <a href="index.html#contact" class="text-gray-400 underline hover:text-lime">Contact for hourly work.</a></p>
         </div>
     </section>
 
-    <!-- SIGNATURE MARQUEE (Consistency) -->
+    <!-- MODERN COMPARISON TABLE -->
+    <section class="py-32 px-6 lg:px-12 bg-black border-t border-zinc-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-20">
+                <h2 class="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6">Plan Comparison.</h2>
+                <p class="text-zinc-400 font-medium text-lg max-w-2xl">Detailed breakdown of exactly what you get with each package.</p>
+            </div>
+            
+            <div class="overflow-x-auto no-scrollbar rounded-[40px] border border-zinc-800 bg-zinc-900/30 shadow-xl shadow-black/20">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-zinc-900/50">
+                            <th class="p-4 md:p-8 lg:p-10 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500 border-b border-zinc-800">Service Detail</th>
+                            <th class="p-4 md:p-8 lg:p-10 text-[10px] font-black uppercase tracking-[0.3em] text-white text-center border-b border-zinc-800">Basic</th>
+                            <th class="p-4 md:p-8 lg:p-10 text-[10px] font-black uppercase tracking-[0.3em] text-white text-center border-b border-zinc-800 bg-lime/5">Standard</th>
+                            <th class="p-4 md:p-8 lg:p-10 text-[10px] font-black uppercase tracking-[0.3em] text-white text-center border-b border-zinc-800">Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm font-medium text-zinc-300">
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Store Foundation & Setup</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                        </tr>
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Responsive Mobile Optimization</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                        </tr>
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Branding & Color Palette</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 text-zinc-600">Basic</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5 text-white">Full</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 text-white">Full</td>
+                        </tr>
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Ecommerce Functionality</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                        </tr>
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Speed Optimization</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 text-zinc-600">—</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                        </tr>
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Advanced Performance Tuning</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 text-zinc-600">—</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5 text-zinc-600">—</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800"><i data-lucide="check" class="w-5 h-5 text-lime mx-auto"></i></td>
+                        </tr>
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Number of Pages Included</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 font-black text-zinc-500">1</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5 font-black text-white">3</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 font-black text-white">5</td>
+                        </tr>
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Product Upload Count</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 font-black text-zinc-500">1</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5 font-black text-white">6</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 font-black text-white">10</td>
+                        </tr>
+                        <tr class="comparison-row">
+                            <td class="p-4 md:p-6 lg:p-8 border-b border-zinc-800">Plugins/Apps Installation</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 font-black text-zinc-500">1</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 bg-lime/5 font-black text-white">2</td>
+                            <td class="p-4 md:p-6 lg:p-8 text-center border-b border-zinc-800 font-black text-white">4</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQ Section -->
+    <section class="py-32 px-6 lg:px-12 bg-black border-t border-zinc-900">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-white mb-5">Common Queries.</h2>
+                <p class="text-zinc-400 font-medium text-lg">Clear answers to help you decide.</p>
+            </div>
+
+            <div class="space-y-5">
+                <details class="group bg-zinc-900/50 rounded-3xl border border-zinc-800 overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md hover:border-zinc-700">
+                    <summary class="list-none cursor-pointer p-8 flex justify-between items-center text-lg font-bold text-white select-none">
+                        How does the "100% Satisfaction" work?
+                        <span class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center group-open:bg-lime group-open:rotate-180 transition-all">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-white group-open:text-black transition-transform"></i>
+                        </span>
+                    </summary>
+                    <div class="px-8 pb-8 text-zinc-400 leading-relaxed font-medium">
+                        I present a design mockup within the first 48 hours. If you feel it doesn't align with your brand vision, you can request a full refund immediately—before we move to the development phase.
+                    </div>
+                </details>
+
+                <details class="group bg-zinc-900/50 rounded-3xl border border-zinc-800 overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md hover:border-zinc-700">
+                    <summary class="list-none cursor-pointer p-8 flex justify-between items-center text-lg font-bold text-white select-none">
+                        Do I need to buy a theme separately?
+                        <span class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center group-open:bg-lime group-open:rotate-180 transition-all">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-white group-open:text-black transition-transform"></i>
+                        </span>
+                    </summary>
+                    <div class="px-8 pb-8 text-zinc-400 leading-relaxed font-medium">
+                        Yes, if you choose a premium Shopify theme. I can work with free themes (like Dawn) or recommend high-conversion premium ones that I'll then customize to match your brand identity perfectly.
+                    </div>
+                </details>
+
+                <details class="group bg-zinc-900/50 rounded-3xl border border-zinc-800 overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md hover:border-zinc-700">
+                    <summary class="list-none cursor-pointer p-8 flex justify-between items-center text-lg font-bold text-white select-none">
+                        Can you help with platform migrations?
+                        <span class="w-10 h-10 bg-zinc-800 rounded-full flex items-center justify-center group-open:bg-lime group-open:rotate-180 transition-all">
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-white group-open:text-black transition-transform"></i>
+                        </span>
+                    </summary>
+                    <div class="px-8 pb-8 text-zinc-400 leading-relaxed font-medium">
+                        Absolutely. I specialize in migrating data, products, and customer profiles from WooCommerce, Magento, or custom-built stacks over to Shopify without losing your SEO rankings.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Marquee -->
     <div class="relative py-8 bg-[#111] border-y border-white/5 overflow-hidden">
         <!-- Fade Gradients -->
         <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#111] to-transparent z-10 pointer-events-none"></div>
         <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#111] to-transparent z-10 pointer-events-none"></div>
 
-        <div class="marquee-track flex whitespace-nowrap gap-16 items-center text-white/30 hover:text-white transition-colors duration-500 font-bold uppercase tracking-widest text-xl" style="animation-duration: 45s;">
+        <div class="marquee-track flex whitespace-nowrap gap-16 items-center text-white font-bold uppercase tracking-widest text-xl" style="animation-duration: 50s;">
              <div class="flex items-center gap-16">
                  <span>Shopify Developer</span>
                  <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
-                 <span class="text-lime">No-Code Sections</span>
+                 <span class="text-lime">Theme Customization</span>
                  <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
-                 <span>Speed Cleanup</span>
+                 <span>Speed Optimization</span>
                  <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
-                 <span class="text-lime">Migration Expert</span>
+                 <span class="text-lime">App Integration</span>
                  <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
              </div>
-             <!-- Duplicate -->
+             <!-- Duplicate for loop -->
              <div class="flex items-center gap-16">
                  <span>Shopify Developer</span>
                  <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
-                 <span class="text-lime">No-Code Sections</span>
+                 <span class="text-lime">Theme Customization</span>
                  <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
-                 <span>Speed Cleanup</span>
+                 <span>Speed Optimization</span>
                  <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
-                 <span class="text-lime">Migration Expert</span>
+                 <span class="text-lime">App Integration</span>
                  <i data-lucide="asterisk" class="text-lime w-6 h-6 animate-spin-slow"></i>
              </div>
         </div>
     </div>
 
-    <!-- UNIVERSAL FOOTER -->
-    <footer id="contact" class="bg-black text-white pt-32 pb-12 px-6 lg:px-12 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-end mb-32">
-                <!-- Left: Massive Text -->
-                <div>
-                     <button class="bg-[#111] border border-white/10 rounded-full px-4 py-1.5 mb-8 text-[10px] uppercase font-bold tracking-widest flex items-center gap-2">
-                        <div class="w-2 h-2 bg-lime rounded-full animate-pulse"></div> Available for work
-                     </button>
-                     <h2 class="text-5xl md:text-8xl font-bold leading-none tracking-tighter">
-                        Let's create something <br> <span class="text-gray-600">extraordinary</span> together.
-                     </h2>
-                </div>
-
-                <!-- Right: Profile Block -->
-                <div class="bg-[#111] p-10 rounded-[40px] border border-white/5 relative">
-                    <div class="flex items-center gap-6 mb-10">
-                        <img src="assets/images/aniket..png" alt="Aniket" class="w-16 h-16 rounded-full grayscale hover:grayscale-0 transition-all">
-                        <div>
-                            <h4 class="text-xl font-bold">Aniket Shinde</h4>
-                            <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Shopify Developer</p>
-                            <div class="flex gap-4 mt-3">
-                                <a href="https://www.instagram.com/introvert_ani.26/" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-                                <a href="https://www.linkedin.com/in/aniket-shinde-b12526292/" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-8">
-                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest block mb-1">Contact me</span>
-                        <a href="mailto:aniketshinde.work@outlook.com" class="text-xl md:text-3xl font-bold hover:text-lime transition-colors block break-words">
-                            aniketshinde.work<br><span class="text-gray-500 text-lg">@outlook.com</span>
-                        </a>
-                    </div>
-
-                    <p class="text-sm text-gray-400 leading-relaxed font-medium">
-                        Hit me up if you're looking for a <span class="text-white">fast, reliable Shopify dev</span> who can bring your vision to life.
-                    </p>
-                </div>
-            </div>
-
-            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-600">
-                <div class="flex items-center gap-2">
-                    <span class="text-white">Aniket Shinde</span> / 2026
-                </div>
-                <p>&copy; 2026 Aniket Shinde — Built for Shopify</p>
-                <a href="#" class="flex items-center gap-2 hover:text-white transition-colors">Back to top <i data-lucide="arrow-up" class="w-3 h-3"></i></a>
-            </div>
-
-        </div>
-    </footer>
-
-    <!-- Premium Floating WhatsApp Widget -->
-    <a href="https://wa.me/918094998810?text=Hi%20Aniket%2C%20I%27d%20love%20to%20discuss%20a%20Shopify%20project%20with%20you%21" target="_blank" class="fixed bottom-6 right-6 z-50 flex items-center group">
-        <div class="bg-black text-white text-[11px] font-bold py-2.5 px-4 rounded-l-full opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300 border border-white/10 border-r-0 uppercase tracking-widest hidden md:block shadow-xl">
-            Chat with me
-        </div>
-        <div class="relative">
-            <div class="absolute inset-0 bg-lime rounded-full animate-ping opacity-25"></div>
-            <div class="relative bg-lime text-black w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(198,245,70,0.4)] group-hover:scale-110 transition-transform duration-300">
-                <svg viewBox="0 0 24 24" class="w-7 h-7 md:w-8 md:h-8 fill-current" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-                </svg>
-            </div>
-        </div>
-    </a>
+    <!-- FOOTER COMPONENT -->
+    <div data-component="footer"></div>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script src="assets/js/main.js"></script>
     <script>
+        // Init Lucide Icons
         lucide.createIcons();
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => cursor.style.transform = 'scale(0.8)');
+        document.addEventListener('mouseup', () => cursor.style.transform = 'scale(1)');
+
+        // Hover Effect for Cursor
+        const links = document.querySelectorAll('a, button, summary');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2.5)';
+                cursor.style.backgroundColor = 'white';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursor.style.backgroundColor = '#C6F546';
+            });
+        });
     </script>
 </body>
 </html>
-
-
