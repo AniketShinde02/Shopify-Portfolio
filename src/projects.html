@@ -53,18 +53,21 @@
             -webkit-font-smoothing: subpixel-antialiased;
         }
 
-        /* Smooth Scroll on Hover Logic */
+        /* Smooth Scroll on Hover Logic using Object Position */
         .project-card {
-            content-visibility: auto;
-            contain-intrinsic-size: 500px; /* matches the h-[500px] of the card */
+            /* We use contain: paint instead of content-visibility to ensure animations never break */
+            contain: paint style; 
         }
         .project-card:hover .scrolling-image {
-            transform: translateY(calc(-100% + 460px)) translateZ(0); 
-            transition: transform 6s cubic-bezier(0.1, 0, 0.2, 1) !important; 
-            will-change: transform;
+            object-position: bottom center;
+            transition: object-position 6s cubic-bezier(0.25, 1, 0.5, 1) !important;
         }
         .project-card .scrolling-image {
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: object-position 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         /* LAZY LOAD FADE IN */
@@ -194,7 +197,7 @@
                         <div class="ml-4 text-[10px] text-gray-400 font-mono">yamunafashion.com</div>
                     </div>
                     <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                        <img loading="lazy" decoding="async" src="assets/screenshots/Yamuna%20Fashion.webp" alt="Yamuna Fashion" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                        <img loading="lazy" decoding="async" src="assets/screenshots/Yamuna%20Fashion.webp" alt="Yamuna Fashion" class="scrolling-image w-full object-cover object-top">
                         <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             <h3 class="text-2xl font-bold">Yamuna Fashion</h3>
                             <p class="text-lime text-xs uppercase tracking-widest mt-2">View Case Study</p>
@@ -213,7 +216,7 @@
                         <div class="ml-4 text-[10px] text-gray-400 font-mono">tipashluxuries.com</div>
                     </div>
                     <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                        <img loading="lazy" decoding="async" src="assets/screenshots/Tipash.webp" alt="Tipash Luxuries" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                        <img loading="lazy" decoding="async" src="assets/screenshots/Tipash.webp" alt="Tipash Luxuries" class="scrolling-image w-full object-cover object-top">
                         <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             <h3 class="text-2xl font-bold">Tipash Luxuries</h3>
                             <p class="text-lime text-xs uppercase tracking-widest mt-2">View Case Study</p>
@@ -232,7 +235,7 @@
                         <div class="ml-4 text-[10px] text-gray-400 font-mono">makeupby.tipashluxuries.com</div>
                     </div>
                     <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                        <img loading="lazy" decoding="async" src="assets/screenshots/makeup.webp" alt="Makeup By Tipash" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                        <img loading="lazy" decoding="async" src="assets/screenshots/makeup.webp" alt="Makeup By Tipash" class="scrolling-image w-full object-cover object-top">
                         <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             <h3 class="text-2xl font-bold">Makeup By Tipash</h3>
                             <p class="text-lime text-xs uppercase tracking-widest mt-2">View Case Study</p>
@@ -250,7 +253,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">wookie-store.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" decoding="async" src="assets/screenshots/Wookie.webp" alt="Wookie" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Wookie.webp" alt="Wookie" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Wookie Store</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -755,6 +758,7 @@
     </script>
 </body>
 </html>
+
 
 
 
