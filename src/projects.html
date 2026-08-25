@@ -54,13 +54,17 @@
         }
 
         /* Smooth Scroll on Hover Logic */
+        .project-card {
+            content-visibility: auto;
+            contain-intrinsic-size: 500px; /* matches the h-[500px] of the card */
+        }
         .project-card:hover .scrolling-image {
             transform: translateY(calc(-100% + 460px)) translateZ(0); 
             transition: transform 6s cubic-bezier(0.1, 0, 0.2, 1) !important; 
+            will-change: transform;
         }
         .project-card .scrolling-image {
             transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
         }
 
         /* LAZY LOAD FADE IN */
@@ -190,7 +194,7 @@
                         <div class="ml-4 text-[10px] text-gray-400 font-mono">yamunafashion.com</div>
                     </div>
                     <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                        <img src="assets/screenshots/Yamuna%20Fashion.webp" alt="Yamuna Fashion" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                        <img loading="lazy" decoding="async" src="assets/screenshots/Yamuna%20Fashion.webp" alt="Yamuna Fashion" class="scrolling-image w-full object-cover object-top h-[1400px]">
                         <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             <h3 class="text-2xl font-bold">Yamuna Fashion</h3>
                             <p class="text-lime text-xs uppercase tracking-widest mt-2">View Case Study</p>
@@ -209,7 +213,7 @@
                         <div class="ml-4 text-[10px] text-gray-400 font-mono">tipashluxuries.com</div>
                     </div>
                     <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                        <img src="assets/screenshots/Tipash.webp" alt="Tipash Luxuries" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                        <img loading="lazy" decoding="async" src="assets/screenshots/Tipash.webp" alt="Tipash Luxuries" class="scrolling-image w-full object-cover object-top h-[1400px]">
                         <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             <h3 class="text-2xl font-bold">Tipash Luxuries</h3>
                             <p class="text-lime text-xs uppercase tracking-widest mt-2">View Case Study</p>
@@ -228,7 +232,7 @@
                         <div class="ml-4 text-[10px] text-gray-400 font-mono">makeupby.tipashluxuries.com</div>
                     </div>
                     <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                        <img src="assets/screenshots/makeup.webp" alt="Makeup By Tipash" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                        <img loading="lazy" decoding="async" src="assets/screenshots/makeup.webp" alt="Makeup By Tipash" class="scrolling-image w-full object-cover object-top h-[1400px]">
                         <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                             <h3 class="text-2xl font-bold">Makeup By Tipash</h3>
                             <p class="text-lime text-xs uppercase tracking-widest mt-2">View Case Study</p>
@@ -246,7 +250,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">wookie-store.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img src="assets/screenshots/Wookie.webp" alt="Wookie" class="scrolling-image w-full object-cover object-top h-[1400px]">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Wookie.webp" alt="Wookie" class="scrolling-image w-full object-cover object-top h-[1400px]">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Wookie Store</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -264,7 +268,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">glam-beauty.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Beauty Store.webp" alt="Beauty Store" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Beauty Store.webp" alt="Beauty Store" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Beauty Store</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -281,7 +285,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">macha-culture.jp</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Macha.webp" alt="Macha Tea" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Macha.webp" alt="Macha Tea" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Macha Tea</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -298,7 +302,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">nitro-parts.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Auto Parts.webp" alt="Auto Parts" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Auto Parts.webp" alt="Auto Parts" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Auto Parts</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -315,7 +319,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">kids-world.store</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Kids.webp" alt="Kids Store" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Kids.webp" alt="Kids Store" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Kids World</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -332,7 +336,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">juice-bar.co</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Fresh Juice.webp" alt="Fresh Juice" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Fresh Juice.webp" alt="Fresh Juice" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Fresh Juice</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -349,7 +353,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">burger-box.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Fast Food.webp" alt="Fast Food" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Fast Food.webp" alt="Fast Food" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Fast Food</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -366,7 +370,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">floral-bliss.io</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Floral.webp" alt="Floral Studio" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Floral.webp" alt="Floral Studio" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Floral Studio</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -383,7 +387,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">vision-spec.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Glasses.webp" alt="Glasses" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Glasses.webp" alt="Glasses" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Glasses Emporium</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -400,7 +404,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">spice-route.co</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Spices.webp" alt="Spices" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Spices.webp" alt="Spices" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Spices & Flavors</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -417,7 +421,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">gadget-hub.io</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Gadget.webp" alt="Gadget" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Gadget.webp" alt="Gadget" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Gadget Hub</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -434,7 +438,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">velo-cycles.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Bicycle.webp" alt="Bicycle" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Bicycle.webp" alt="Bicycle" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Bicycle Studio</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -451,7 +455,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">gloss-nails.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Nail Polish.webp" alt="Nail Polish" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Nail Polish.webp" alt="Nail Polish" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Glossy Nails</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -468,7 +472,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">okilau-shop.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Okilau.webp" alt="Okilau" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Okilau.webp" alt="Okilau" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Okilau Boutique</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -485,7 +489,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">gastro-table.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Restraunt.webp" alt="Restraunt" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Restraunt.webp" alt="Restraunt" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">The Gastronomy</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -502,7 +506,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">vegabite.io</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Vegabite.webp" alt="Vegabite" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Vegabite.webp" alt="Vegabite" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Vegabite Healthy</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -519,7 +523,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">woman-vogue.store</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img loading="lazy" src="assets/screenshots/Women.webp" alt="Women Store" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Women.webp" alt="Women Store" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Women Fashion</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -536,7 +540,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">glam-beauty.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img src="assets/screenshots/Beauty Store.webp" alt="Beauty Store" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Beauty Store.webp" alt="Beauty Store" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Beauty Store</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -553,7 +557,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">macha-culture.jp</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img src="assets/screenshots/Macha.webp" alt="Macha Tea" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Macha.webp" alt="Macha Tea" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Macha Tea</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -570,7 +574,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">nitro-parts.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img src="assets/screenshots/Auto Parts.webp" alt="Auto Parts" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Auto Parts.webp" alt="Auto Parts" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Auto Parts</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -587,7 +591,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">gadget-hub.io</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img src="assets/screenshots/Gadget.webp" alt="Gadget Hub" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Gadget.webp" alt="Gadget Hub" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Gadget Hub</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -604,7 +608,7 @@
                     <div class="ml-4 text-[10px] text-gray-400 font-mono">velo-cycles.com</div>
                 </div>
                 <div class="w-full h-full pt-10 overflow-hidden bg-gray-50 relative">
-                     <img src="assets/screenshots/Bicycle.webp" alt="Bicycle" class="scrolling-image w-full object-cover object-top">
+                     <img loading="lazy" decoding="async" src="assets/screenshots/Bicycle.webp" alt="Bicycle" class="scrolling-image w-full object-cover object-top">
                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                          <h3 class="text-2xl font-bold">Bicycle Studio</h3>
                          <p class="text-lime text-xs uppercase tracking-widest mt-2">Hover to Scroll</p>
@@ -751,6 +755,8 @@
     </script>
 </body>
 </html>
+
+
 
 
 
