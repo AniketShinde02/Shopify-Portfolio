@@ -34,7 +34,27 @@ console.log('🚀 Starting Build Process...');
 // 1. Copy Main Files (HTML, robots, sitemap)
 const files = fs.readdirSync(srcDir);
 files.forEach(file => {
-    if (file.endsWith('.html') || file === 'robots.txt' || file === 'sitemap.xml') {
+    if (file.endsWith('.html')) {
+        let content = fs.readFileSync(path.join(srcDir, file), 'utf8');
+        
+        // Next.js Spoofing
+        // Wrap body content in <div id="__next">
+        content = content.replace(/<body([^>]*)>/i, '<body$1>\n    <div id="__next">');
+        
+        // Add fake Next.js data and scripts before closing body tag
+        const fakeNextScripts = `
+        </div>
+        <script id="__NEXT_DATA__" type="application/json">
+          {"props":{"pageProps":{}},"page":"/","query":{},"buildId":"prod-2026-build","isFallback":false,"gsp":true,"scriptLoader":[]}
+        </script>
+        <script src="/_next/static/chunks/main-app.js" defer></script>
+        <script src="/_next/static/chunks/webpack.js" defer></script>
+</body>`;
+        content = content.replace(/<\/body>/i, fakeNextScripts);
+
+        fs.writeFileSync(path.join(distDir, file), content);
+        console.log(`📄 Compiled & Spoofed ${file}`);
+    } else if (file === 'robots.txt' || file === 'sitemap.xml') {
         fs.copyFileSync(path.join(srcDir, file), path.join(distDir, file));
         console.log(`📄 Copied ${file}`);
     }
@@ -65,5 +85,12 @@ if (!process.env.WEB3FORMS_ACCESS_KEY) {
 
 fs.writeFileSync(configPath, JSON.stringify(config, null, 4));
 console.log(`✅  Generated config.json in dist/assets`);
+
+// 4. Create Fake Next.js Asset Paths
+const nextChunksDir = path.join(distDir, '_next', 'static', 'chunks');
+fs.mkdirSync(nextChunksDir, { recursive: true });
+fs.writeFileSync(path.join(nextChunksDir, 'main-app.js'), '/* Next.js Spoof */');
+fs.writeFileSync(path.join(nextChunksDir, 'webpack.js'), '/* Next.js Spoof */');
+console.log(`✅  Generated Next.js spoof assets`);
 
 console.log('✨  Pre-build steps completed.');

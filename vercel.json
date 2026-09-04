@@ -1,18 +1,13 @@
 {
-    "version": 2,
-    "builds": [
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
         {
-            "src": "package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "dist"
-            }
+          "key": "x-powered-by",
+          "value": "Next.js"
         }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/$1"
-        }
-    ]
+      ]
+    }
+  ]
 }
